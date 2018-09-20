@@ -126,9 +126,7 @@ class GoodSizePriceController extends Controller
                 if(isset($gsp_item->good->category)) $category_name = Category::getCategoryName($gsp_item->good->category);
                 //preg_match_all('/[а-яА-Я0-9]+/u', $product_name.' '.$portion_name, $site_str, PREG_SET_ORDER, 0);
                 $site_str = explode(' ', str_replace(['.',',','(',')'],'',mb_strtoupper($product_name.' '.$portion_name, 'UTF-8')));
-                if($category_name == "Закуски"){
-                    echo 'закуски!';
-                }
+
                 foreach($frontpad_products as $article => $frontpad_product){
                     //preg_match_all('/[а-яА-Я0-9]+/u', $frontpad_product['name'], $frontpad_str, PREG_SET_ORDER, 0);
                     $frontpad_str = explode(' ', str_replace(['.',',','(',')'],'',mb_strtoupper($frontpad_product['name'],'UTF-8')));
