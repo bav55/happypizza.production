@@ -264,7 +264,7 @@
 @section('script')
     <script src="https://widget.cloudpayments.ru/bundles/cloudpayments"></script>
     <script src="{{ asset('/tpl/js/order.js') }}"></script>
-    @if(Auth::user()->hasRole('operator'))
+    @if( (Auth::check()) && (Auth::user()->hasRole('operator')))
         <script>
             $('#client-clear').on( "click", function() {
                 $('#account-name').val('');
