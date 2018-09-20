@@ -1,0 +1,115 @@
+.interview-title, .interview-radios, .send-interview, .int-archive, .int-archive .int-item, .int-archive .int-item .int-item-title, .int-archive .int-item .int-item-history, .int-archive .int-item .int-item-history .history-item {
+  position: relative;
+  float: left;
+  width: 100%; }
+
+.interview-radios .interview-radio, .int-archive .int-item .int-item-history .history-item .history-item-text, .int-archive .int-item .int-item-history .history-item .history-item-line {
+  position: relative;
+  float: left; }
+
+.interview-radios .interview-radio div {
+  font-size: 0;
+  line-height: 0; }
+
+.interview-title {
+  margin-top: 5px;
+  font-weight: bold; }
+
+.interview-radios {
+  margin-top: 7px; }
+  .interview-radios .interview-radio {
+    clear: both;
+    margin-top: 10px;
+    padding-left: 25px;
+    cursor: pointer; }
+    .interview-radios .interview-radio div {
+      display: block;
+      position: absolute;
+      width: 9px;
+      height: 9px;
+      left: 10px;
+      top: 4px;
+      background: url(../images/radio.png) no-repeat; }
+    .interview-radios .interview-radio.active div {
+      background-position: 0 -9px; }
+
+.send-interview {
+  margin-top: 20px; }
+
+.int-archive .look-all-int {
+  text-align: left;
+  margin-top: 15px;
+  margin-bottom: 5px; }
+  .int-archive .look-all-int span {
+    margin-left: 15px; }
+.int-archive .int-item.last-int {
+  padding-bottom: 10px;
+  border-bottom: solid 1px #c8c8c8; }
+.int-archive .int-item .int-item-title {
+  border-top: solid 1px #c8c8c8;
+  margin-top: 10px;
+  padding-top: 8px;
+  line-height: 20px;
+  padding-right: 80px; }
+  .int-archive .int-item .int-item-title p {
+    display: inline;
+    font-weight: bold;
+    border-bottom: dashed 1px #4b4b4b;
+    cursor: pointer; }
+    @media screen and (max-width: 1200px) {
+      .int-archive .int-item .int-item-title p {
+        border-bottom: dashed 1px #4b4b4b; } }
+  .int-archive .int-item .int-item-title:hover p, .int-archive .int-item .int-item-title.active p {
+    border-bottom: none; }
+  .int-archive .int-item .int-item-title .int-item-date {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 9px;
+    font-size: 12px;
+    color: #969696;
+    white-space: nowrap; }
+.int-archive .int-item .int-item-history {
+  padding-bottom: 20px;
+  display: none; }
+  .int-archive .int-item .int-item-history .history-item {
+    padding-left: 15px;
+    margin-top: 20px; }
+    @media screen and (max-width: 768px) {
+      .int-archive .int-item .int-item-history .history-item {
+        margin-top: 15px;
+        padding-left: 30px; } }
+    .int-archive .int-item .int-item-history .history-item .history-item-text {
+      width: 170px;
+      margin-right: 25px; }
+      @media screen and (max-width: 768px) {
+        .int-archive .int-item .int-item-history .history-item .history-item-text {
+          width: 100%;
+          margin-right: 0; } }
+    .int-archive .int-item .int-item-history .history-item .history-item-line {
+      width: 200px;
+      height: 15px;
+      background: #fff;
+      margin-top: 3px;
+      margin-left: 25px; }
+      @media screen and (max-width: 768px) {
+        .int-archive .int-item .int-item-history .history-item .history-item-line {
+          margin-top: 5px; } }
+      .int-archive .int-item .int-item-history .history-item .history-item-line .percent {
+        position: absolute;
+        height: 15px;
+        background: #c32b2a;
+        color: #fff;
+        font-size: 12px;
+        line-height: 15px;
+        text-align: center; }
+      .int-archive .int-item .int-item-history .history-item .history-item-line .out-percent {
+        position: absolute;
+        left: -45px;
+        width: 40px;
+        text-align: right;
+        top: 0;
+        font-size: 12px;
+        line-height: 15px; }
+
+/*# sourceMappingURL=interview.css.map */

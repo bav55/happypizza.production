@@ -1,0 +1,14 @@
+.cart-size-select {
+    border: solid 1px #c8c8c8;
+    padding: 3px 0 3px 3px;
+    width: 100%;
+}
+.cart-products-list-item-description .menu-list-count {
+    position: relative;
+}
+.cart-item-bottom {
+    bottom: 0;
+    margin-bottom: 5px;
+    position: absolute;
+    width: 100%;
+}

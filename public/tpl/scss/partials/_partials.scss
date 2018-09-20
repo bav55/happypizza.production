@@ -1,0 +1,91 @@
+%div100 {
+    position: relative;
+    float: left;
+    width: 100%;
+}
+
+%abs100 {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    left: 0;
+    top: 0;
+}
+
+%rgt {
+    position: relative;
+    float: right;
+}
+
+%lft {
+    position: relative;
+    float: left;
+}
+
+%fs {
+    font-size: 0;
+    line-height: 0;
+}
+
+%no-selection {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none; 
+}
+
+@mixin han-screen {
+    @media screen and (max-width: 1400px) {
+        @content;
+    }
+}
+
+@mixin md-screen {
+    @media screen and (max-width: 1200px) {
+        @content;
+    }
+}
+
+@mixin sm-screen {
+    @media screen and (max-width: 992px) {
+        @content;
+    }
+}
+
+@mixin xs-screen {
+    @media screen and (max-width: 768px) {
+        @content;
+    }
+}
+
+@mixin small-screen {
+    @media screen and (max-width: 640px) {
+        @content;
+    }
+}
+
+@mixin smallest-screen {
+    @media screen and (max-width: 480px) {
+        @content;
+    }
+}
+
+@mixin tiny-screen {
+    @media screen and (max-width: 430px) {
+        @content;
+    }
+}
+
+@mixin load-font($font, $type, $style, $weight) {
+    @font-face {
+        font-family: quote($font);
+        src: url("../fonts/#{$font}/#{$type}/#{$font}.eot");
+        src: url("../fonts/#{$font}/#{$type}/#{$font}.eot?#iefix")format("embedded-opentype"),
+        url("../fonts/#{$font}/#{$type}/#{$font}.woff") format("woff"),
+        url("../fonts/#{$font}/#{$type}/#{$font}.ttf") format("truetype");
+        font-style: $style;
+        font-weight: $weight;
+    }
+}

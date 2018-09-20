@@ -1,0 +1,160 @@
+@import "partials/partials";
+
+#vacancies-list {
+    @extend %div100;
+
+    .vacancie-item {
+        @extend %div100;
+        margin-top: 15px;
+        padding-bottom: 47px;
+
+        .vacancie-image {
+            @extend %div100;
+            height: 190px;
+            border: solid 1px #535353;
+
+            img {
+                display: block;
+                position: absolute;
+                bottom: 0;
+                left: 50%;
+
+                &.vac1 {
+                    width: 207px;
+                    height: 150px;
+                    margin-left: -104px;
+                }
+
+                &.vac2 {
+                    width: 215px;
+                    height: 150px;
+                    margin-left: -108px;
+                }
+
+                &.vac3 {
+                    width: 189px;
+                    height: 150px;
+                    margin-left: -95px;
+                }
+            }
+        }
+
+        .vacancie-name {
+            @extend %div100;
+            color: #c32b2a;
+            font-family: 'BebasNeue', 'Arial';
+            font-weight: bold;
+            text-transform: uppercase;
+            font-size: 24px;
+            line-height: 26px;
+            text-align: center;
+            margin-top: 10px;
+
+            @include sm-screen {
+                font-size: 22px;
+                line-height: 24px;
+            }
+
+            @include xs-screen {
+                font-size: 20px;
+                line-height: 22px;
+            }
+        }
+
+        .vacancie-announce {
+            @extend %div100;
+            margin-top: 5px;
+        }
+
+        .vacancie-date {
+            position: absolute;
+            width: 100%;
+            left: 0;
+            bottom: 23px;
+            font-size: 12px;
+            text-align: right;
+            color: #969696;
+            margin-top: 5px;
+        }
+
+        .vacancie-more {
+            position: absolute;
+            width: 100%;
+            bottom: 0;
+            left: 0;
+            background: url(../images/pixel.png) center repeat-x;
+            text-align: right;
+
+            a {
+                display: inline-block;
+                padding: 0 7px;
+                background: url(../images/bg.png);
+                color: #4b4b4b !important;
+                text-decoration: underline !important;
+                margin-right: 15px;
+
+                &:hover {
+                    text-decoration: none !important;
+                    color: #c32b2a !important;
+                }
+            }
+        }
+    }
+}
+
+#vac-full-content {
+    @extend %div100;
+    padding-bottom: 30px;
+
+    .vac-full-date {
+        color: #afafaf;
+        font-size: 12px;
+        margin-top: 3px;
+    }
+
+    .anketa-title {
+        @extend %div100;
+        font-weight: bold;
+        padding-bottom: 5px;
+
+        @include sm-screen {
+            border-top: solid 1px #969696;
+            margin-top: 30px;
+            padding-top: 20px;
+        }
+    }
+
+    .ank-question {
+        @extend %div100;
+        margin-top: 12px;
+        padding: 0 8px;
+    }
+
+    .ank-input {
+        @extend %div100;
+        margin-top: 2px;
+
+        input[type=text] {
+            display: block;
+            @extend %div100;
+            background: #fff;
+            border: solid 1px #c8c8c8;
+            padding: 2px 7px;
+            font-size: 12px;
+            font-family: 'Arial';
+        }
+    }
+
+    .ank-send {
+        @extend %div100;
+        margin-top: 30px;
+    }
+}
+
+.look-all-news {
+    text-align: left;
+
+    a {
+        margin-left: 15px;
+    }
+}

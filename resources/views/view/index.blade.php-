@@ -1,0 +1,134 @@
+@extends('layouts.guest')
+
+@section('meta-content')
+    <title>{{ json_decode(\App\Models\Setting::all()->find(1)->seo)->title }}</title>
+    <meta name="keywords" content="{{ json_decode(\App\Models\Setting::all()->find(1)->seo)->keywords }}">
+    <meta name="description" content="{{ json_decode(\App\Models\Setting::all()->find(1)->seo)->description }}">
+@endsection
+
+@section('content')
+
+    <div id="slides" class="is-full hidden-xs">
+        <div class="container">
+            <div id="index-slide">
+                <div class="swiper-container">
+                    <div class="swiper-wrapper">
+                        @foreach($slider as $value)
+                        <div class="swiper-slide">
+                            <a href="{{ $value->title }}" class="slide-item" style="background-image: url({{ asset($value->url) }});">
+                                <!--<span class="red-button">Подробнее</span>-->
+                            </a>
+                        </div>
+                        @endforeach
+                    </div>
+                </div>
+
+                <div class="swiper-pagination"></div>
+                <div id="prev" class="swiper-button-prev"></div>
+                <div id="next" class="swiper-button-next"></div>
+            </div>
+
+            <div class="slides-left is-lft">
+                <div id="pizza-girl" class="is-abs"></div>
+
+                <div class="delivery-title is-full"></div>
+                <div class="delivery-60 is-full">
+                    <span>за</span> 60 минут
+                </div>
+                <div class="delivery-sub is-full">опоздаем - пицца в подарок</div>
+            </div>
+        </div>
+    </div>
+
+    <div id="menu-list" class="is-full menu-list-block i-menu-list">
+        <div class="container index-container">
+            <div id="index-menu-list" class="row">
+                <div class="col-xs-12 text-center">
+                    <h3>Закажи вкуснейшую пиццу</h3>
+                </div>
+            </div>
+
+            <div class="row menu-list-row">
+                @foreach($goods as $good)
+                    @include('view.blocks.good-block')
+                @endforeach
+            </div>
+
+            <div class="row">
+                <div class="col-xs-12">
+                    <div class="look-all is-full">
+                        <a href="{{ route('category_link','pizza') }}">СМОТРЕТЬ ВСЕ</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="gray-curve"></div>
+    </div>
+
+    <div id="index-news" class="is-full">
+        <div class="wood-shadow-holder is-abs">
+            <div></div>
+        </div>
+
+        <div class="container">
+            <div class="row">
+                <div class="col-xs-12 text-center">
+                    <h3>Новости и акции</h3>
+                </div>
+                @foreach($actions as $action)
+                    <div class="col-sm-4 col-xs-6 text-center">
+                        <a class="index-news-item" href="{{ route('action', $action->url) }}">
+                            <img src="{{ asset($action->image) }}" alt="{{ $action->title }}">
+                            <!--<span class="red-button">Подробнее</span>-->
+                        </a>
+                    </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+
+    @include('view.blocks.constructor')
+
+@endsection
+
+@if( json_decode(\App\Models\Setting::all()->find(1)->seo)->content )
+    @php
+        $seo_block_title = json_decode(\App\Models\Setting::all()->find(1)->seo)->content_title;
+        $seo_block_content = json_decode(\App\Models\Setting::all()->find(1)->seo)->content;
+    @endphp
+    @include('view.blocks.seo-text-block')
+@endif
+
+@section('script')
+   <?php /* @if (Auth::guest())
+        <script>
+            function ChangeComposition() {
+                alert('Необходимо авторизоваться');
+            }
+        </script>
+    @else */ ?>
+        <script src="{{ asset('tpl/js/constructor.js') }}"></script>
+        <script>
+            @php
+                $ingredients = \App\Models\Ingredient::where('category_id','1')->get();
+                $count = count($ingredients);
+                $string = 'ing = {';
+                $in = 0;
+                    foreach ($ingredients as $ingredient){
+                        $string .= '"'.$ingredient->id .'": {';
+                            $string .= 'part_1:' . $ingredient->part_1 .',';
+                            $string .= 'part_2:' . $ingredient->part_2 .',';
+                            $string .= 'port: 0,';
+                            $string .= 'w_1: 100,';
+                            $string .= 'w_2: 200';
+                        $string .= '}'; $count-1 != $in ? $string .= ',' : $string .='';
+                        $in++;
+                    }
+                $string .= '}';
+            echo $string;
+            @endphp
+        </script>
+   <?php /*  @endif */ ?>
+
+@endsection

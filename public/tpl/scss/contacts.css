@@ -1,0 +1,81 @@
+#contacts-content-block, #contacts-content-block .contact-item, #contacts-content-block .write-us-title, #contacts-content-block .feedback-item, #contacts-content-block .feedback-item input[type=text], #contacts-content-block .feedback-item textarea {
+  position: relative;
+  float: left;
+  width: 100%; }
+
+#contacts-content-block {
+  padding-bottom: 40px; }
+  #contacts-content-block .socials a {
+    float: left; }
+  @media screen and (max-width: 992px) {
+    #contacts-content-block .left-contact-block {
+      border-bottom: solid 1px #969696;
+      padding-bottom: 25px; } }
+  @media screen and (max-width: 992px) {
+    #contacts-content-block .right-contact-block {
+      margin-top: 12px; } }
+  #contacts-content-block .contact-item {
+    margin-top: 23px;
+    padding-left: 30px; }
+    @media screen and (max-width: 992px) {
+      #contacts-content-block .contact-item {
+        margin-top: 20px; } }
+    #contacts-content-block .contact-item table td {
+      padding-right: 4px;
+      vertical-align: top; }
+    #contacts-content-block .contact-item.contact-phones .citem-icon {
+      position: absolute;
+      width: 12px;
+      height: 14px;
+      left: 0;
+      top: 2px;
+      background: url(../images/phone-ico.png) no-repeat; }
+    #contacts-content-block .contact-item.contact-schedules .citem-icon {
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      left: 0;
+      top: 2px;
+      background: url(../images/schedule-ico.png) no-repeat; }
+    #contacts-content-block .contact-item.contact-emails .citem-icon {
+      position: absolute;
+      width: 19px;
+      height: 14px;
+      left: 0;
+      top: 2px;
+      background: url(../images/email-ico.png) no-repeat; }
+  #contacts-content-block .contacts-line {
+    position: absolute;
+    width: 1px;
+    height: 100%;
+    right: 5px;
+    top: 0;
+    background: #969696; }
+    @media screen and (max-width: 992px) {
+      #contacts-content-block .contacts-line {
+        display: none; } }
+  #contacts-content-block .write-us-title {
+    font-weight: bold;
+    font-size: 24px;
+    line-height: 26px; }
+    @media screen and (max-width: 992px) {
+      #contacts-content-block .write-us-title {
+        font-size: 22px;
+        line-height: 24px; } }
+    @media screen and (max-width: 768px) {
+      #contacts-content-block .write-us-title {
+        font-size: 20px;
+        line-height: 22px; } }
+  #contacts-content-block .feedback-item {
+    margin-top: 15px; }
+    #contacts-content-block .feedback-item input[type=text], #contacts-content-block .feedback-item textarea {
+      display: block;
+      background: #fff;
+      font-family: 'Arial';
+      font-size: 12px;
+      padding: 1px 7px; }
+    #contacts-content-block .feedback-item textarea {
+      resize: none;
+      height: 60px; }
+
+/*# sourceMappingURL=contacts.css.map */

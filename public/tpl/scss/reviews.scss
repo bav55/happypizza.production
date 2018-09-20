@@ -1,0 +1,160 @@
+@import "partials/partials";
+
+#review-pagination {
+    bottom: 0;
+    top: auto;
+    background: #e1e1e1 !important;
+
+    .swiper-pagination-progressbar {
+        background: #969696 !important;
+    }
+}
+
+#review-slider {
+    @extend %div100;
+    background: #ffffff;
+    padding: 10px 35px 5px;
+    margin-top: 22px;
+
+    .review-item {
+        @extend %div100;
+        padding-bottom: 35px;
+
+        table {
+            width: 100%;
+            margin-bottom: 17px;
+
+            td {
+                width: 50%;
+                vertical-align: top;
+
+                &.r-point {
+                    text-align: right;
+                    white-space: nowrap;
+
+                    span {
+                        font-weight: bold;
+
+                        &.good-point {
+                            color: #45a224;
+                        }
+
+                        &.bad-point {
+                            color: #c32b2a;
+                        }
+                    }
+                }
+
+                .reviewer-name {
+                    font-weight: bold;
+                }
+
+                .review-date {
+                    color: #afafaf;
+                    font-size: 12px;
+                }
+            }
+        }
+    }
+}
+
+#send-review-block {
+    @extend %div100;
+    margin-top: 30px;
+
+    .left-review {
+        @include sm-screen {
+            padding-bottom: 20px;
+            border-bottom: solid 1px #969696;
+        }
+    }
+
+    .right-review {
+        @include sm-screen {
+            margin-top: 24px;
+        }
+    }
+
+    #review-table {
+        td {
+            vertical-align: top;
+            padding-right: 2px;
+
+            .review-us {
+                white-space: nowrap;
+            }
+        }
+    }
+
+    #review-stars {
+        @extend %div100;
+        white-space: nowrap;
+        margin-top: -3px;
+
+        span {
+            display: inline-block;
+            cursor: pointer;
+            width: 23px;
+            height: 21px;
+            background: url(../images/stars.png) no-repeat;
+            margin-left: 10px;
+
+            &:hover, &.active {
+                background-position: 0 -21px;
+            }
+
+            @include xs-screen {
+                margin-left: 5px;
+            }
+        }
+    }
+
+    #review-point {
+        @extend %div100;
+        margin-top: 10px;
+        padding-left: 10px;
+
+        @include xs-screen {
+            padding-left: 5px;
+        }
+
+        .review-point {
+            color: #45a224;
+            font-weight: bold;
+            font-size: 16px;
+        }
+
+        .review-count {
+            color: #969696;
+            font-size: 16px;
+        }
+    }
+
+    .review-input {
+        @extend %div100;
+        margin-top: 15px;
+
+        &:first-child {
+            margin-top: 0;
+        }
+
+        input[type=text], textarea {
+            display: block;
+            @extend %div100;
+            font-size: 12px;
+            font-family: 'Arial';
+            background: #fff;
+            border: solid 1px #c8c8c8;
+            padding: 1px 7px;
+        }
+
+        textarea {
+            resize: none;
+            height: 60px;
+        }
+
+        &.review-button {
+            text-align: right;
+        }
+    }
+}

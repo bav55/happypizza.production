@@ -1,0 +1,137 @@
+<?php
+
+Auth::routes();
+
+Route::group(['prefix' => 'ip5woctv9f990lc'], function() {
+
+    Route::group(['middleware' => 'guest'], function () {
+        Route::get('login', 'Auth\LoginController@index');
+        Route::post('login', 'Auth\LoginController@login');
+    });
+
+    Route::group(['middleware' => 'auth'], function() {
+
+        Route::get('/', 'HomeController@index')->name('home');
+
+        /* superadmin route */
+        Route::resource('categories', 'Superadmin\CategoryController', ['middleware' => 'role:superadmin', 'only' => ['index','create','destroy','edit','update','store']] );
+        Route::resource('p-cods', 'Superadmin\PromoCodeController', ['middleware' => 'role:superadmin', 'only' => ['index','create','destroy','edit','update','store','show']] );
+        Route::resource('goods', 'Superadmin\GoodController', ['middleware' => 'role:superadmin', 'only' => ['index','create','destroy','edit','update','store']] );
+        Route::resource('portions', 'Superadmin\PortionsController', ['middleware' => 'role:superadmin', 'only' => ['index','create','destroy','edit','update','store']] );
+        Route::resource('preferences', 'Superadmin\PreferencesController', ['middleware' => 'role:superadmin', 'only' => ['index','create','destroy','edit','update','store']] );
+        Route::resource('ingredients', 'Superadmin\IngredientsController', ['middleware' => 'role:superadmin', 'only' => ['index','create','destroy','edit','update','store']] );
+        Route::resource('subscriptions', 'Superadmin\SubscriptionController', ['middleware' => 'role:superadmin', 'only' => ['index','destroy']] );
+        Route::resource('pages', 'Superadmin\PageController', ['middleware' => 'role:superadmin', 'only' => ['index','create','destroy','edit','update','store']] );
+        Route::resource('news', 'Superadmin\NewsController', ['middleware' => 'role:superadmin', 'only' => ['index','create','destroy','edit','update','store']] );
+        Route::resource('faqs', 'Superadmin\FaqController', ['middleware' => 'role:superadmin', 'only' => ['index','create','destroy','edit','update','store']] );
+        Route::resource('review', 'Superadmin\ReviewController', ['middleware' => 'role:superadmin', 'only' => ['index','create','destroy','edit','update','store']] );
+        
+        Route::resource('bonuslog', 'Superadmin\BonusLogController', ['middleware' => 'role:superadmin', 'only' => ['index','create','destroy','edit','update','store']] );
+        Route::resource('user', 'Superadmin\UserController', ['middleware' => 'role:superadmin', 'only' => ['index','create','destroy','edit','update','store']] );
+        
+        Route::resource('action', 'Superadmin\ActionController', ['middleware' => 'role:superadmin', 'only' => ['index','create','destroy','edit','update','store','show']] );
+        Route::resource('selling', 'Superadmin\OrderController', ['middleware' => 'role:superadmin', 'only' => ['index','create','destroy','edit','update','store','show']] );
+        Route::resource('vacancy', 'Superadmin\VacancyController', ['middleware' => 'role:superadmin', 'only' => ['index','create','destroy','edit','update','store','show']] );
+        Route::resource('mailing', 'Superadmin\MailingController', ['middleware' => 'role:superadmin', 'only' => ['index','create','destroy','edit','update','store','show']] );
+        Route::resource('votes', 'Superadmin\VoteController', ['middleware' => 'role:superadmin', 'only' => ['index','create','destroy','edit','update','store','show']] );
+        Route::resource('media', 'Superadmin\MediaController', ['middleware' => 'role:superadmin','only' => ['index','create']] );
+        Route::get('media/delete', 'Superadmin\MediaController@delete')->middleware('role:superadmin')->name('media-delete');
+        Route::get('api/get-potion', 'Superadmin\ApiController@get_potion')->middleware('role:superadmin');
+        Route::get('api/get-ingridients', 'Superadmin\ApiController@get_ingridients')->middleware('role:superadmin');
+        Route::get('api/setting', 'Superadmin\ApiController@setting')->middleware('role:superadmin')->name('setting');
+        Route::put('api/potion/update/{id}', 'Superadmin\ApiController@settingUpdate')->middleware('role:superadmin')->name('settingUpdate');
+        Route::get('api/categories', 'Superadmin\ApiController@getCategories')->middleware('role:superadmin');
+        Route::get('api/category-goods/{id}', 'Superadmin\ApiController@getCategoryGoods')->middleware('role:superadmin');
+        Route::get('api/category-size', 'Superadmin\ApiController@getCategorySize')->middleware('role:superadmin');
+
+    });
+
+});
+
+Route::get('/', 'IndexController@index')->name('index');
+Route::get('menu/{category}', 'View\CategoryController@index')->name('category_link');
+Route::get('product/{product}', 'View\ProductController@index')->name('product_link');
+Route::get('faq', 'IndexController@faq')->name('faq');
+Route::get('promotions', 'IndexController@action_list')->name('action_list');
+Route::get('promotions/{url}', 'IndexController@action')->name('action');
+Route::get('/faq/request', 'IndexController@faq_request');
+
+Route::get('news/', 'IndexController@news_list')->name('news_list');
+Route::get('news/{news}', 'IndexController@news')->name('news');
+
+Route::get('reviews', 'IndexController@reviews')->name('reviews');
+Route::post('add-reviews', 'IndexController@addReviews');
+
+Route::get('subscription/{email}', 'IndexController@subscription');
+
+Route::get('vacancies', 'IndexController@vacancies')->name('vacancies');
+Route::get('vacancies/{url}', 'IndexController@vacancyShow');
+
+Route::get('vote', 'IndexController@voteShow')->name('vote');
+Route::post('vote/request', 'IndexController@voteRequest');
+
+/* account */
+Route::group(['prefix' => 'account'], function() {
+    Route::group(['middleware' => 'auth'], function() {
+
+        Route::get('/', 'View\AccountController@account')->name('account');
+        Route::post('/update', 'View\AccountController@update_data');
+        Route::get('/created-pizza', 'View\AccountController@createdPizza')->name('createdPizza');
+        Route::post('/update/password', 'View\AccountController@update_password');
+        Route::get('/order-history', 'View\AccountController@orderHistory')->name('orderHistory');
+        Route::get('show-order/{id}', 'View\AccountController@showOrder')->name('showOrder');
+
+    });
+});
+/* account */
+
+/* pay */
+Route::get('order/check', 'OrderController@check');
+Route::get('order/pay', 'OrderController@pay');
+Route::post('order/check', 'OrderController@check');
+Route::post('order/pay', 'OrderController@pay');
+
+/* cart functions */
+Route::get('add-to-cart', 'View\CartController@addToCart');
+Route::get('remove-at-cart', 'View\CartController@removeAtCart');
+Route::get('good-count', 'View\CartController@updateGoodCont');
+Route::get('cart-sum', 'View\CartController@getCartSum');
+Route::get('cart-count', 'View\CartController@getCartGoodCount');
+Route::get('cart', 'View\CartController@cartPage')->name('cart');
+Route::get('cart/checkout', 'View\CartController@checkoutCart')->name('checkout');
+Route::get('apply-promo/{code}', 'View\CartController@applyCode');
+Route::post('order-create', 'View\CartController@orderCreate')->name('order');
+Route::post('sens-message-pay', 'View\CartController@sensMessagePay')->name('orderpay');
+Route::get('approved', 'View\CartController@approvedOrder');
+/* cart functions */
+
+/* api route */
+Route::get('api/portion', 'View\ApiController@getPortionSizePrice');
+Route::get('api/portion-reprice', 'View\ApiController@goodReprice');
+Route::get('api/constructor/{id}', 'View\ApiController@getConstractData');
+Route::get('api/custom-good-save', 'View\ApiController@customGoodSave');
+Route::delete('api/custom-good-remove', 'View\ApiController@customGoodRemove');
+Route::post('api/mail-send', 'View\ApiController@sendMail');
+Route::post('api/vacancies', 'View\ApiController@vacanciesSend')->name('vacanciesSend');
+/* api route */
+
+//Route::get('abc', function (){
+//    dump($_SESSION);
+//    foreach ($_SESSION['cart'] as $key => $value){
+//        foreach ($value as $item){
+//            echo '<pre>';
+//            print_r($item['good']['size_id']);
+//            echo '<pre>';
+//        }
+//    }
+//});
+//
+Route::get('qaz', function (){
+//    $actions = \App\Models\Action::where('date_at','<',date('Y-m-d').'00:00:00')
+//        ->where('date_to','>',date('Y-m-d').'23:59:59')->get();
+//    dump($actions);
+    phpinfo();
+});
+
+Route::get('{page}', 'IndexController@page');
+

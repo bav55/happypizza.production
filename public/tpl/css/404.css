@@ -1,0 +1,307 @@
+body{
+	margin:0px;
+	background: #fff;
+}
+body p{
+  margin-bottom:0px;
+}
+.main-phone{
+  font-size:15px;
+}
+.error-container{
+	height:750px;
+	background:url(/tpl/images/404/right-top-pizza.png);
+	background-repeat: no-repeat;
+	background-size: contain;
+	overflow:hidden;
+	background-position: right top;
+	position: relative;
+  width:100%;
+}
+
+
+
+
+@media screen and (max-width: 1400px) and (min-width: 1200px) {
+  div .error-message{
+    margin-left:20%;
+  }
+}
+@media screen and (min-width: 991px) and (max-width: 1200px) {
+  div .error-message{
+    margin-left:15%;
+    margin-top:215px;
+  }
+  body .error-container{
+    height:640px;
+  }
+}
+@media screen and (min-width: 768px) and (max-width: 991px) {
+  #main-categories{
+    margin-top:150px!important;
+  }
+  body .error-container{
+    height:480px;
+  }
+  div .bottom-left{
+    width:160px;
+  }
+   div .error-message{
+    margin-left:12%;
+    margin-top:110px;
+  }
+  body .error-container{
+    height:480px;
+  }
+}
+.top-left{
+  display:none;
+}
+.right-top{
+  display:none;
+}
+.button-main{
+  display:none;
+}
+.bottom-img{
+  display:none;
+}
+@media screen and (min-width: 620px) and (max-width: 767px) {
+  .button-main{
+    text-align: center;
+    display:block;
+    width:100%;
+    margin-top:50px;
+
+  }
+  body .error-container{
+    height:875px!important;
+  }
+  .button-main button{
+    color:white;
+    text-transform: uppercase;
+    border:0px;
+    border-radius:10px;
+    background-color:#ffe100;
+    color:#333333;
+    padding:20px 40px;
+    font-size:42px;
+  }
+  .top-left{
+    display:block;
+    width: 420px;
+    position: absolute;
+    top: 34px;
+  }
+  .bottom-img{
+    display:block;
+    width:410px;
+    position: absolute;
+    bottom:-75px;
+    right:0px;
+  }
+  .right-top{
+    display:block;
+    width:190px;
+    right:-20px;
+    position: absolute;
+    top:34px;
+  }
+ body header #logo{
+    left: 0px;
+    right: 0px;
+    margin: 0 auto;
+    width: 250px;
+    top: 5px;
+    height: 100px;
+    background: url(/tpl/images/404/big-logo.png);
+    background-size: 79%;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  div .error-message{
+    margin-left:0px;
+    text-align: center;
+  }
+  .error-container{
+    background:none;
+  }
+  .bottom-left{
+    display:none;
+  }
+  body header{
+    background:url("/tpl/images/404/header-small.png");
+    height:50px;
+  }
+  .curve-bottom ,#mobile-menu , #user-icons , .main-phone , #socials{
+    display:none!important;
+  }
+}
+
+@media screen and (min-width: 480px) and (max-width: 620px) {
+  .button-main{
+    text-align: center;
+    display:block;
+    width:100%;
+    margin-top:50px;
+
+  }
+  body .error-container{
+    height:820px!important;
+  }
+  .button-main button{
+    color:white;
+    text-transform: uppercase;
+    border:0px;
+    border-radius:10px;
+    background-color:#ffe100;
+    color:#333333;
+    padding:20px 40px;
+    font-size:42px;
+  }
+  .top-left{
+    display:block;
+    width: 350px;
+    position: absolute;
+    top: 34px;
+    left:-20px;
+  }
+  .bottom-img{
+    display:block;
+    width:350px;
+    position: absolute;
+    bottom:-75px;
+    right:0px;
+  }
+  .right-top{
+    display:block;
+    width:150px;
+    right:-20px;
+    position: absolute;
+    top:34px;
+  }
+ body header #logo{
+    left: 0px;
+    right: 0px;
+    margin: 0 auto;
+    width: 250px;
+    top: 5px;
+    height: 100px;
+    background: url(/tpl/images/404/big-logo.png);
+    background-size: 79%;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  div .error-message{
+    margin-left:0px;
+    text-align: center;
+  }
+  .error-container{
+    background:none;
+  }
+  .bottom-left{
+    display:none;
+  }
+  body header{
+    background:url("/tpl/images/404/header-small.png");
+    height:50px;
+  }
+  .curve-bottom ,#mobile-menu , #user-icons , .main-phone , #socials{
+    display:none!important;
+  }
+}
+
+
+
+@media screen and (min-width: 320px) and (max-width: 480px) {
+  .button-main{
+    text-align: center;
+    display:block;
+    width:100%;
+    margin-top:50px;
+
+  }
+  body .error-container{
+    height:750px!important;
+  }
+  .button-main button{
+    color:white;
+    text-transform: uppercase;
+    border:0px;
+    border-radius:10px;
+    background-color:#ffe100;
+    color:#333333;
+    padding:10px 25px;
+    font-size:36px;
+  }
+  .top-left{
+    display:block;
+    width: 270px;
+    position: absolute;
+    top: 34px;
+    left:-20px;
+  }
+  .bottom-img{
+    display:block;
+    width:310px;
+    position: absolute;
+    bottom:-75px;
+    right:0px;
+  }
+  .right-top{
+    display:block;
+    width:120px;
+    right:-20px;
+    position: absolute;
+    top:34px;
+  }
+ body header #logo{
+    left: 0px;
+    right: 0px;
+    margin: 0 auto;
+    width: 250px;
+    top: 5px;
+    height: 100px;
+    background: url(/tpl/images/404/big-logo.png);
+    background-size: 79%;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+  div .error-message{
+    margin-left:0px;
+    text-align: center;
+  }
+  .error-container{
+    background:none;
+  }
+  .bottom-left{
+    display:none;
+  }
+  body header{
+    background:url("/tpl/images/404/header-small.png");
+    height:50px;
+  }
+  .curve-bottom ,#mobile-menu , #user-icons , .main-phone , #socials{
+    display:none!important;
+  }
+}
+
+
+
+
+
+
+
+.transp-back{
+  background-color: white!important;
+  background-image:none;
+}
+.error-message{
+	margin-left:25%;
+	margin-top:200px;
+}
+.bottom-left{
+	position: absolute;
+	left:0px;
+	bottom:0px;
+}

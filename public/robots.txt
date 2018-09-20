@@ -1,0 +1,33 @@
+User-agent: *
+Disallow: /cart
+Disallow: /account
+Disallow: /vote
+Disallow: /contacts
+Disallow: /promotions/heppi-set
+Disallow: /tri-bolshie-pitstsy-za-5500-tg27092538
+Disallow: /promotions/gunkan-set
+Disallow: /dve-srednie-pitstsy-za-3300-tg27092639
+Disallow: /promotions/set-3
+Disallow: /promotions/set-1
+Disallow: /promotions/set-2
+Disallow: /*?order=title
+Disallow: /*?order=price
+ 
+User-agent: Yandex
+Disallow: /cart
+Disallow: /account
+Disallow: /vote
+Disallow: /contacts
+Disallow: /promotions/heppi-set
+Disallow: /tri-bolshie-pitstsy-za-5500-tg27092538
+Disallow: /promotions/gunkan-set
+Disallow: /dve-srednie-pitstsy-za-3300-tg27092639
+Disallow: /promotions/set-3
+Disallow: /promotions/set-1
+Disallow: /promotions/set-2
+Disallow: /*?order=title
+Disallow: /*?order=price
+
+Host: www.happypizza.kz/
+
+Sitemap: http://www.happypizza.kz/sitemap.xml

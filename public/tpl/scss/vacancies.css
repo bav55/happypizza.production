@@ -1,0 +1,110 @@
+#vacancies-list, #vacancies-list .vacancie-item, #vacancies-list .vacancie-item .vacancie-image, #vacancies-list .vacancie-item .vacancie-name, #vacancies-list .vacancie-item .vacancie-announce, #vac-full-content, #vac-full-content .anketa-title, #vac-full-content .ank-question, #vac-full-content .ank-input, #vac-full-content .ank-input input[type=text], #vac-full-content .ank-send {
+  position: relative;
+  float: left;
+  width: 100%; }
+
+#vacancies-list .vacancie-item {
+  margin-top: 15px;
+  padding-bottom: 47px; }
+  #vacancies-list .vacancie-item .vacancie-image {
+    height: 190px;
+    border: solid 1px #535353; }
+    #vacancies-list .vacancie-item .vacancie-image img {
+      display: block;
+      position: absolute;
+      bottom: 0;
+      left: 50%; }
+      #vacancies-list .vacancie-item .vacancie-image img.vac1 {
+        width: 207px;
+        height: 150px;
+        margin-left: -104px; }
+      #vacancies-list .vacancie-item .vacancie-image img.vac2 {
+        width: 215px;
+        height: 150px;
+        margin-left: -108px; }
+      #vacancies-list .vacancie-item .vacancie-image img.vac3 {
+        width: 189px;
+        height: 150px;
+        margin-left: -95px; }
+  #vacancies-list .vacancie-item .vacancie-name {
+    color: #c32b2a;
+    font-family: 'BebasNeue', 'Arial';
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 24px;
+    line-height: 26px;
+    text-align: center;
+    margin-top: 10px; }
+    @media screen and (max-width: 992px) {
+      #vacancies-list .vacancie-item .vacancie-name {
+        font-size: 22px;
+        line-height: 24px; } }
+    @media screen and (max-width: 768px) {
+      #vacancies-list .vacancie-item .vacancie-name {
+        font-size: 20px;
+        line-height: 22px; } }
+  #vacancies-list .vacancie-item .vacancie-announce {
+    margin-top: 5px; }
+  #vacancies-list .vacancie-item .vacancie-date {
+    position: absolute;
+    width: 100%;
+    left: 0;
+    bottom: 23px;
+    font-size: 12px;
+    text-align: right;
+    color: #969696;
+    margin-top: 5px; }
+  #vacancies-list .vacancie-item .vacancie-more {
+    position: absolute;
+    width: 100%;
+    bottom: 0;
+    left: 0;
+    background: url(../images/pixel.png) center repeat-x;
+    text-align: right; }
+    #vacancies-list .vacancie-item .vacancie-more a {
+      display: inline-block;
+      padding: 0 7px;
+      background: url(../images/bg.png);
+      color: #4b4b4b !important;
+      text-decoration: underline !important;
+      margin-right: 15px; }
+      #vacancies-list .vacancie-item .vacancie-more a:hover {
+        text-decoration: none !important;
+        color: #c32b2a !important; }
+
+#vac-full-content {
+  padding-bottom: 30px; }
+  #vac-full-content .vac-full-date {
+    color: #afafaf;
+    font-size: 12px;
+    margin-top: 3px; }
+  #vac-full-content .anketa-title {
+    font-weight: bold;
+    padding-bottom: 5px; }
+    @media screen and (max-width: 992px) {
+      #vac-full-content .anketa-title {
+        border-top: solid 1px #969696;
+        margin-top: 30px;
+        padding-top: 20px; } }
+  #vac-full-content .ank-question {
+    margin-top: 12px;
+    padding: 0 8px; }
+  #vac-full-content .ank-input {
+    margin-top: 2px; }
+    #vac-full-content .ank-input input[type=text] {
+      display: block;
+      background: #fff;
+      border: solid 1px #c8c8c8;
+      padding: 2px 7px;
+      font-size: 12px;
+      font-family: 'Arial', serif;
+      line-height: 27px; }
+  #vac-full-content .ank-send {
+    margin-top: 30px; }
+
+.look-all-news {
+  text-align: left; }
+  .look-all-news a {
+    margin-left: 15px; }
+
+/*# sourceMappingURL=vacancies.css.map */

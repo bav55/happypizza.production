@@ -1,0 +1,537 @@
+@import "partials/partials";
+
+#menu-list, #menu-add-list {
+    margin-top : 25px;
+
+    @include xs-screen {
+        margin-top : 275px;
+    }
+
+    .menu-list-row {
+        margin : 0 -10px;
+    }
+
+    .col-md-4 {
+        padding : 0 10px;
+
+        @include xs-screen {
+            width : 100%;
+        }
+    }
+}
+
+.menu-list-item {
+    background    : #fff;
+    border        : solid 1px #c8c8c8;
+    margin-bottom : 30px;
+
+    .menu-list-image {
+        @extend %div100;
+        text-align : center;
+
+        @include xs-screen {
+            padding-top : 10px;
+        }
+
+        img {
+            max-width : 100%;
+        }
+    }
+
+    .is-hit {
+        position   : absolute;
+        width      : 70px;
+        height     : 70px;
+        right      : -7px;
+        top        : -7px;
+        background : url(../images/hit.png) no-repeat;
+    }
+
+    .is-new {
+        position   : absolute;
+        width      : 110px;
+        height     : 110px;
+        right      : -7px;
+        top        : -7px;
+        background : url(../images/is-new.png) no-repeat;
+    }
+
+    .menu-list-title {
+        @extend %div100;
+        text-align : center;
+
+        h4 {
+            display        : inline-block;
+            position       : relative;
+            color          : #c32b2a;
+            font-size      : 18px;
+            line-height    : 20px;
+            text-transform : uppercase;
+            font-weight    : bold;
+            font-family    : 'BebasNeue';
+            margin         : 10px 10px 0;
+
+            &::before, &::after {
+                position : absolute;
+                content  : '-';
+                top      : 0;
+            }
+
+            &::before {
+                left       : -10px;
+                text-align : left;
+            }
+
+            &::after {
+                right      : -10px;
+                text-align : right;
+            }
+        }
+
+        p {
+            margin : 0 10px 7px;
+        }
+    }
+
+    .menu-list-announce {
+        @extend %div100;
+
+        p {
+            margin : 0 10px;
+        }
+    }
+
+    .menu-items-el {
+        @extend %div100;
+        margin-top : 5px;
+        text-align : center;
+
+        .change-ing {
+            @extend %div100;
+            padding     : 0 10px;
+            white-space : nowrap;
+            margin-top  : 3px;
+            height      : 18px;
+
+            a {
+                color           : #969696 !important;
+                text-decoration : none !important;
+                border-bottom   : dashed 1px #969696;
+
+                &:hover {
+                    border-bottom : none;
+                }
+            }
+        }
+
+        .menu-el-old-price {
+            @extend %lft;
+            width        : 40%;
+            font-weight  : bold;
+            font-family  : 'BebasNeue', 'Arial';
+            color        : #969696;
+            font-size    : 18px;
+            line-height  : 38px;
+            padding-left : 10px;
+            margin-top   : 14px;
+            text-align   : left;
+
+            span {
+                font-size : 28px;
+            }
+
+            @include sm-screen {
+                margin-top  : 9px;
+                line-height : 34px;
+
+                span {
+                    font-size : 24px;
+                }
+            }
+
+            @include xs-screen {
+                line-height : 30px;
+
+                span {
+                    font-size : 20px;
+                }
+            }
+
+            div {
+                position   : absolute;
+                width      : 76px;
+                height     : 22px;
+                left       : 5px;
+                top        : 50%;
+                margin-top : -14px;
+                background : url(../images/no-line.png) no-repeat;
+            }
+        }
+
+        .menu-list-price {
+            @extend %rgt;
+            width       : 60%;
+            text-align  : right;
+            font-weight : bold;
+            font-family : 'BebasNeue', 'Arial';
+            font-size   : 18px;
+            padding     : 0 10px;
+            color       : #c32b2a;
+            line-height : 38px;
+            margin-top  : 12px;
+
+            span {
+                font-size : 36px;
+            }
+
+            @include sm-screen {
+                line-height : 34px;
+                margin-top  : 7px;
+
+                span {
+                    font-size : 32px;
+                }
+            }
+
+            @include xs-screen {
+                line-height : 30px;
+
+                span {
+                    font-size : 28px;
+                }
+            }
+        }
+
+        .to-cart-button {
+            @extend %div100;
+            margin     : 6px 0 15px;
+            text-align : right;
+
+            @include md-screen {
+                text-align : center;
+            }
+
+            a {
+                display      : inline-block;
+                margin-right : 8px;
+                height       : 31px;
+                line-height  : 31px;
+                font-size    : 15px;
+                padding      : 0 20px;
+
+                @include md-screen {
+                    margin-right : 0;
+                }
+            }
+        }
+
+        .menu-list-settings {
+            @extend %div100;
+            @extend %no-selection;
+            margin-top : 18px;
+            font-size  : 14px;
+
+            &.no-ing {
+                margin-top : 12px;
+            }
+
+            @include md-screen {
+                display    : inline-block;
+                float      : none;
+                width      : auto;
+                margin-top : 15px;
+            }
+
+            .menu-list-size {
+                @extend %div100;
+                padding : 0 90px 0 10px;
+
+                select {
+                    width   : 100%;
+                    border  : solid 1px #c8c8c8;
+                    padding : 3px 0 3px 3px;
+                }
+            }
+
+            .menu-list-count {
+                position    : absolute;
+                width       : 70px;
+                right       : 10px;
+                top         : 0;
+                height      : 26px;
+                line-height : 25px;
+                color       : #4b4b4b;
+                border      : solid 1px #c9c9c9;
+
+                span {
+                    display    : inline-block;
+                    text-align : center;
+
+                    &.minus, &.plus {
+                        width  : 17px;
+                        cursor : pointer;
+
+                        &:hover {
+                            color      : #fff;
+                            background : #c32b2a;
+                        }
+                    }
+
+                    &.ml-count {
+                        width   : 26px;
+                        padding : 0;
+                    }
+
+                    &.minus {
+                        color        : #c8c8c8;
+                        border-right : solid 1px #c9c9c9;
+                    }
+
+                    &.plus {
+                        border-left : solid 1px #c9c9c9;
+                        color       : #4b4b4b;
+                    }
+                }
+            }
+        }
+    }
+}
+
+#menu-add-list {
+    h4 {
+        font-size   : 24px;
+        line-height : 26px;
+    }
+}
+
+.look-all {
+    margin-bottom : 23px;
+}
+
+.with-this {
+    h4 {
+        text-align : left;
+        color      : #4b4b4b;
+    }
+}
+
+#menu-add-list {
+    .menu-list-item {
+        background : url(../images/add-bg.png);
+    }
+}
+
+#sort-by {
+    margin-top : 5px;
+
+    span, a {
+        margin-right : 12px;
+
+        @include small-screen {
+            display  : block;
+            position : relative;
+            float    : left;
+            width    : 100%;
+        }
+    }
+
+    span {
+        @include small-screen {
+            margin-bottom : 5px;
+        }
+    }
+
+    a {
+        color           : #4b4b4b;
+        text-decoration : none !important;
+
+        &:hover {
+            color : #c32b2a !important;
+        }
+
+        &.active {
+            font-weight : bold;
+        }
+    }
+
+    .select-element {
+        border       : 1px solid #c8c8c8;
+        display      : inline-block;
+        margin-right : 10px;
+
+        & button {
+            background : transparent;
+            border     : none;
+        }
+
+        & .caret {
+            margin-right : 0;
+        }
+    }
+}
+
+.with-this {
+    margin-top : 20px;
+}
+
+#ingredients-modal {
+    & h1 {
+        display        : inline-block;
+        position       : relative;
+        font-family    : 'BebasNeue', 'Arial', serif;
+        font-size      : 36px;
+        font-weight    : bold;
+        text-transform : uppercase;
+        color          : #c32b2a;
+        line-height    : 38px;
+    }
+
+    & p {
+        font-size     : 14px;
+        margin-bottom : 10px;
+    }
+
+    & span {
+        color     : #4b4b4b;
+        font-size : 14px;
+
+        &.ingredient-price {
+            color   : #c32b2a;
+            display : inline-block;
+        }
+
+        &.ingredient-name {
+            & span {
+                color     : #969696;
+                font-size : 12px;
+            }
+        }
+    }
+
+    .ingredient-name {
+        display : inline-block;
+    }
+
+    .ingredient-price {
+        margin-top : 3px;
+    }
+
+    .ingredient-remove {
+        margin-top : 2px;
+
+        a {
+            background-color : #c32b2a;
+            border-radius    : 18px;
+            color            : #fff;
+            display          : block;
+            height           : 18px;
+            margin-bottom    : 0;
+            text-align       : center;
+            text-decoration  : none;
+            width            : 18px;
+        }
+    }
+
+    .ingredient-item {
+        border        : 1px solid #fff;
+        margin-bottom : 5px;
+
+        & .ingredient-remove {
+            display : none;
+        }
+
+        & .ingredient-price {
+            display : none;
+        }
+
+        &:hover {
+            & .ingredient-remove {
+                display : inline-block;
+            }
+
+            & .ingredient-price {
+                display : inline-block;
+            }
+        }
+
+        &:hover {
+            border : 1px solid #c32b2a;
+        }
+    }
+
+    #available-ingredients {
+
+        & a {
+            font-size : 11px;
+        }
+
+        & .ingredient-portions {
+            display : inline-block;
+
+            & a {
+                text-decoration : none;
+                color           : #4b4b4b;
+                border-bottom   : 1px dotted #4b4b4b;
+
+                &:hover {
+                    color         : #c32b2a;
+                    border-bottom : 1px dotted #c32b2a;
+                }
+
+                &.active {
+                    color         : #c32b2a;
+                    border-bottom : 1px dotted #c32b2a;
+                }
+            }
+        }
+    }
+
+    #calculated-ingredients {
+        margin-bottom : 45px;
+
+        .row {
+            margin-bottom : 5px;
+        }
+
+        & a {
+            font-size : 11px;
+        }
+
+        & .ingredient-portions {
+            display : inline-block;
+
+            & a {
+                text-decoration : none;
+                color           : #4b4b4b;
+                border-bottom   : 1px dotted #4b4b4b;
+
+                &:hover {
+                    color         : #c32b2a;
+                    border-bottom : 1px dotted #c32b2a;
+                }
+
+                &.active {
+                    color         : #c32b2a;
+                    border-bottom : 1px dotted #c32b2a;
+                }
+            }
+        }
+
+        &-total {
+            font-family    : 'BebasNeue', 'Arial', sans-serif;
+            font-size      : 18px;
+            font-weight    : bold;
+            text-transform : uppercase;
+
+            & span {
+                color     : #c32b2a;
+                font-size : 24px;
+            }
+        }
+    }
+
+    & .error {
+        color   : #c32b2a;
+        display : none;
+    }
+}

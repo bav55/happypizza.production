@@ -1,0 +1,1 @@
+{!! json_decode(\App\Models\Setting::all()->find(1)->work)->basic !!}

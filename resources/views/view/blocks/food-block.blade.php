@@ -1,0 +1,11 @@
+<li><a href="{{ route('category_link','pizza') }}" >Пицца</a></li>
+<li><a href="{{ route('category_link','sushi') }}">Суши</a></li>
+<li><a href="{{ route('category_link','supi-i-salati') }}" >Супы и салаты</a></li>
+<li><a href="{{ route('category_link','na-kompaniu') }}" >На компанию</a></li>
+<li><a href="{{ route('category_link','zakuski') }}">Закуски</a></li>
+<li><a href="{{ route('category_link','deserti-i-napitki') }}" >Десерты и напитки</a></li>
+<li><a href="{{ route('category_link','sousi') }}" >Соусы</a></li>
+<hr style="margin: 0;">
+<li><a href="{{ url('promotions') }}">Акции</a></li>
+<li><a href="{{ url('delivery-and-payment') }}">Доставка и оплата</a></li>
+<li><a href="{{ route('reviews') }}">Отзывы</a></li>

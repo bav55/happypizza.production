@@ -1,0 +1,161 @@
+@import "partials/partials";
+
+.interview-title {
+    margin-top: 5px;
+    @extend %div100;
+    font-weight: bold;
+}
+
+.interview-radios {
+    @extend %div100;
+    margin-top: 7px;
+
+    .interview-radio {
+        @extend %lft;
+        clear: both;
+        margin-top: 10px;
+        padding-left: 25px;
+        cursor: pointer;
+
+        div {
+            @extend %fs;
+            display: block;
+            position: absolute;
+            width: 9px;
+            height: 9px;
+            left: 10px;
+            top: 4px;
+            background: url(../images/radio.png) no-repeat;
+        }
+
+        &.active {
+            div {
+                background-position: 0 -9px;
+            }
+        }
+    }
+}
+
+.send-interview {
+    @extend %div100;
+    margin-top: 20px;
+}
+
+#int-archive {
+    @extend %div100;
+
+    .look-all-int {
+        text-align: left;
+        margin-top: 15px;
+        margin-bottom: 5px;
+
+        span {
+            margin-left: 15px;
+        }
+    }
+
+    .int-item {
+        @extend %div100;
+
+        &.last-int {
+            padding-bottom: 10px;
+            border-bottom: solid 1px #c8c8c8;
+        }
+
+        .int-item-title {
+            @extend %div100;
+            border-top: solid 1px #c8c8c8;
+            margin-top: 10px;
+            padding-top: 8px;
+            line-height: 20px;
+            padding-right: 80px;
+
+            p {
+                display: inline;
+                font-weight: bold;
+                border-bottom: dashed 1px #4b4b4b;
+                cursor: pointer;
+
+                @include md-screen {
+                    border-bottom: dashed 1px #4b4b4b;
+                }
+            }
+
+            &:hover, &.active {
+                p {
+                    border-bottom: none;
+                }
+            }
+
+            .int-item-date {
+                display: block;
+                position: absolute;
+                right: 0;
+                top: 9px;
+                font-size: 12px;
+                color: #969696;
+                white-space: nowrap;
+            }
+        }
+
+        .int-item-history {
+            @extend %div100;
+            padding-bottom: 20px;
+            display: none;
+
+            .history-item {
+                @extend %div100;
+                padding-left: 15px;
+                margin-top: 20px;
+
+                @include xs-screen {
+                    margin-top: 15px;
+                    padding-left: 30px;
+                }
+
+                .history-item-text {
+                    @extend %lft;
+                    width: 170px;
+                    margin-right: 25px;
+
+                    @include xs-screen {
+                        width: 100%;
+                        margin-right: 0;
+                    }
+                }
+
+                .history-item-line {
+                    @extend %lft;
+                    width: 200px;
+                    height: 15px;
+                    background: #fff;
+                    margin-top: 3px;
+
+                    @include xs-screen {
+                        margin-top: 5px;
+                    }
+
+                    .percent {
+                        position: absolute;
+                        height: 15px;
+                        background: #c32b2a;
+                        color: #fff;
+                        font-size: 12px;
+                        line-height: 15px;
+                        text-align: center;
+                    }
+
+                    .out-percent {
+                        position: absolute;
+                        left: -45px;
+                        width: 40px;
+                        text-align: right;
+                        top: 0;
+                        font-size: 12px;
+                        line-height: 15px;
+                    }
+                }
+            }
+        }
+    }
+}

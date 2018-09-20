@@ -1,0 +1,81 @@
+@import "partials/partials";
+
+.delivery-title {
+    font-family: 'BebasNeue', 'Arial';
+    text-transform: uppercase;
+    font-size: 24px;
+    line-height: 26px;
+    margin-bottom: 3px;
+
+    @include sm-screen {
+        font-size: 22px;
+        line-height: 24px;
+    }
+
+    @include xs-screen {
+        font-size: 20px;
+        line-height: 22px;
+    }
+}
+
+.delivery-main-title {
+    margin-top: 30px;
+}
+
+.delivery-info {
+    @extend %div100;
+
+    .delivery-item {
+        @extend %div100;
+        padding-left: 83px;
+        border-bottom: solid 1px #969696;
+        margin-top: 30px;
+        padding-bottom: 25px;
+
+        @include sm-screen {
+            margin-top: 25px;
+            padding-bottom: 20px;
+        }
+
+        @include xs-screen {
+            margin-top: 20px;
+            padding-bottom: 15px;
+        }
+
+        p {
+            margin-bottom: 8px;
+        }
+
+        .delivery-icon {
+            position: absolute;
+            left: 0;
+        }
+
+        &.delivery-1 {
+            .delivery-icon {
+                width: 66px;
+                height: 50px;
+                top: 2px;
+                background: url(../images/delivery1.png) no-repeat;
+            }
+        }
+
+        &.delivery-2 {
+            .delivery-icon {
+                width: 52px;
+                height: 50px;
+                top: 2px;
+                background: url(../images/delivery2.png) no-repeat;
+            }
+        }
+
+        &.delivery-3 {
+            .delivery-icon {
+                width: 69px;
+                height: 50px;
+                top: 2px;
+                background: url(../images/delivery3.png) no-repeat;
+            }
+        }
+    }
+}

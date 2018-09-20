@@ -1,0 +1,124 @@
+@import "partials/partials";
+
+#contacts-content-block {
+    @extend %div100;
+    padding-bottom: 40px;
+
+    .socials {
+        a {
+            float: left;
+        }
+    }
+
+    .left-contact-block {
+        @include sm-screen {
+            border-bottom: solid 1px #969696;
+            padding-bottom: 25px;
+        }
+    }
+
+    .right-contact-block {
+        @include sm-screen {
+            margin-top: 12px;
+        }
+    }
+
+    .contact-item {
+        @extend %div100;
+        margin-top: 23px;
+        padding-left: 30px;
+
+        @include sm-screen {
+            margin-top: 20px;
+        }
+
+        table {
+            td {
+                padding-right: 4px;
+                vertical-align: top;
+            }
+        }
+
+        &.contact-phones {
+            .citem-icon {
+                position: absolute;
+                width: 12px;
+                height: 14px;
+                left: 0;
+                top: 2px;
+                background: url(../images/phone-ico.png) no-repeat;
+            }
+        }
+
+        &.contact-schedules {
+            .citem-icon {
+                position: absolute;
+                width: 14px;
+                height: 14px;
+                left: 0;
+                top: 2px;
+                background: url(../images/schedule-ico.png) no-repeat;
+            }
+        }
+
+        &.contact-emails {
+            .citem-icon {
+                position: absolute;
+                width: 19px;
+                height: 14px;
+                left: 0;
+                top: 2px;
+                background: url(../images/email-ico.png) no-repeat;
+            }
+        }
+    }
+
+    .contacts-line {
+        position: absolute;
+        width: 1px;
+        height: 100%;
+        right: 5px;
+        top: 0;
+        background: #969696;
+
+        @include sm-screen {
+            display: none;
+        }
+    }
+
+    .write-us-title {
+        @extend %div100;
+        font-weight: bold;
+        font-size: 24px;
+        line-height: 26px;
+
+        @include sm-screen {
+            font-size: 22px;
+            line-height: 24px;
+        }
+
+        @include xs-screen {
+            font-size: 20px;
+            line-height: 22px;
+        }
+    }
+
+    .feedback-item {
+        @extend %div100;
+        margin-top: 15px;
+
+        input[type=text], textarea {
+            display: block;
+            @extend %div100;
+            background: #fff;
+            font-family: 'Arial';
+            font-size: 12px;
+            padding: 1px 7px;
+        }
+
+        textarea {
+            resize: none;
+            height: 60px;
+        }
+    }
+}
