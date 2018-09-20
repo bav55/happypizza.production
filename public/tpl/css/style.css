@@ -1832,3 +1832,20 @@ p.read-more:hover {cursor: pointer;}
 .left-top-side img{
   width:100% !important;
 }
+.ya-share2{
+  float: left;
+  padding-top: 9px;
+}
+.ya-share2__item{
+  margin-bottom: 5px!important;
+}
+.client-search{
+  margin-top: 22px;
+}
+.client-alert{
+  padding-top: 16px;
+  position: absolute;
+  top: 123px;
+  left: 70px;
+  display: none;
+}

@@ -11,41 +11,32 @@
                 </div>
 
                 <div id="page-title">
-                    <h1>История заказов</h1>
+                    <h1>История по Вашему бонусному счету</h1>
                 </div>
 
                 <div class="row">
                     <div class="col-lg-8 table-responsive">
-                        @if(count($orders) > 0)
+                        @if(count($bonus_log) > 0)
                             <div class="account-orders">
                                 <table class="table table-orders">
                                     <tbody>
                                     </tbody><thead>
                                     <tr>
-                                        <th>№ заказа</th>
-                                        <th>Дата</th>
-                                        <th>Примечание</th>
-                                        <th>Детали заказа</th>
+                                        <th>Бонусы</th>
+                                        <th>Описание</th>
+                                        <th>Дата операции</th>
                                     </tr>
                                     </thead>
                                     <tbody>
-                                    @foreach($orders as $order)
-                                    <tr><td>{{ $order->order_id }}</td>
-                                        <td>{{ \Carbon\Carbon::parse($order->created_at)->format('d.m.Y H:i') }}</td>
-                                        <td>
-                                            @if($order->operator_id != '') Заказ через оператора<br/><small>Бонусы не начисляются</small>
-                                            @else Заказ через сайт <br/><small>Начислены бонусы</small>
-                                            @endif
-                                        </td>
-                                        <td><a href="{{ route('showOrder',$order->id) }}">Смотреть</a>
-                                        </td></tr>
+                                    @foreach($bonus_log as $one_row)
+                                    <tr><td>{{ $one_row->bonus }}</td><td>{{ $one_row->notes }}</td><td>{{ \Carbon\Carbon::parse($one_row->created_at)->format('d.m.Y H:i') }}</td><td></td></tr>
                                     @endforeach
                                     </tbody>
                                 </table>
 
                                 <div class="row">
                                     <div class="col-xs-12">
-                                        {{ $orders->render() }}
+                                        {{ $bonus_log->render() }}
                                     </div>
                                 </div>
                             </div>

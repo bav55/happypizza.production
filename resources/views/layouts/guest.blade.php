@@ -300,6 +300,7 @@
 <script src="{{ asset('tpl/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('tpl/js/maskedinput.js') }}"></script>
 <script src="{{ asset('tpl/js/main.js') }}"></script>
+
 @if (Auth::guest()) <script src="{{ asset('tpl/js/user.js') }}"></script> @endif
 @yield('script')
 <a href="#" class="to-top" id="to-top"></a>

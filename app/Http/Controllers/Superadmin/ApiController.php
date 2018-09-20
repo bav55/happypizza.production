@@ -85,6 +85,5 @@ class ApiController extends Controller
             'good_id' => $size->good_id,
             'price' => $size->portion_price
         ];
-    }
-
+        }
 }

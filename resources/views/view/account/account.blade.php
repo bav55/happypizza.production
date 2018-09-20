@@ -1,7 +1,8 @@
 @extends('layouts.guest')
 
 @section('content')
-
+    <script src="https://yastatic.net/es5-shims/0.0.2/es5-shims.min.js"></script>
+    <script src="https://yastatic.net/share2/share.js" charset="utf-8" async="async"></script>
     <div id="wrapper" class="is-full">
         <div class="container">
             <div class="row">
@@ -23,7 +24,17 @@
                             <div class="col-xs-4"><span style="color: #969696">{{ $user->created_at }}</span></div>
                             <div class="col-xs-4">&nbsp;</div>
                         </div>
-
+                        <div class="row">
+                            <div class="col-xs-12 col-sm-4">Ваша партнерская ссылка</div>
+                            <div class="col-xs-12 col-sm-4"><span style="color: #969696"><a href="{{ route('index',['u' => $user->id]) }}">{{ route('index',['u' => $user->id]) }}</a></span></div>
+                            <div class="col-xs-12 col-sm-4">&nbsp;
+                                <meta property="og:title" content="HappyPizza - Быстрая доставка пиццы и суши в Алматы"/>
+                                <meta property="og:description" content="Быстрая доставка пиццы и суши в Алматы"/>
+                                <meta property="og:image" content="http://happypizza.kz/tpl/images/logo.png"/>
+                                <meta property="og:url" content= "{{ route('index',['u' => $user->id]) }}" />
+                                <div class="ya-share2" data-services="vkontakte,facebook,odnoklassniki,twitter,viber,whatsapp,skype" data-url="{{ route('index',['u' => $user->id]) }}" data-title="HappyPizza" data-description="Быстрая доставка пиццы и суши в Алматы" data-image="http://happypizza.kz/tpl/images/logo.png" data-lang="ru"></div>
+                            </div>
+                        </div>
                         <div class="row">
                             <div class="col-xs-4">Имя&nbsp;* </div>
                             <div class="col-xs-4 account-value">

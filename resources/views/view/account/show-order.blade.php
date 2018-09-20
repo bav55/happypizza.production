@@ -7,10 +7,10 @@
             <div class="col-md-3 col-sm-4 col-xs-5 inner-menu-holder hidden-xs">
                 <div id="inner-menu" class="is-full account-menu" style="top: 0px;">
                     <ul style="border-top: none;">
-                        <li class="active"><a href="http://happypizza.kz/account/orders">История заказов</a></li>
-                        <li><a href="http://happypizza.kz/account/pizza">Созданные пиццы</a></li>
+                        <li class="active"><a href="{{ route('orderHistory') }}">История заказов</a></li>
+                        <li><a href="{{ route('createdPizza') }}">Созданные пиццы</a></li>
 
-                        <li style="border-bottom: none"><a href="http://happypizza.kz/account">Мои данные</a></li>
+                        <li style="border-bottom: none"><a href="{{ route('account') }}">Мои данные</a></li>
                     </ul>
                 </div>
 

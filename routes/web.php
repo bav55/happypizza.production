@@ -7,6 +7,7 @@ Route::group(['prefix' => 'ip5woctv9f990lc'], function() {
     Route::group(['middleware' => 'guest'], function () {
         Route::get('login', 'Auth\LoginController@index');
         Route::post('login', 'Auth\LoginController@login');
+        Route::post('reg', 'Auth\RegisterController@login');
     });
 
     Route::group(['middleware' => 'auth'], function() {
@@ -20,7 +21,8 @@ Route::group(['prefix' => 'ip5woctv9f990lc'], function() {
         Route::resource('portions', 'Superadmin\PortionsController', ['middleware' => 'role:superadmin', 'only' => ['index','create','destroy','edit','update','store']] );
         Route::resource('preferences', 'Superadmin\PreferencesController', ['middleware' => 'role:superadmin', 'only' => ['index','create','destroy','edit','update','store']] );
         Route::resource('ingredients', 'Superadmin\IngredientsController', ['middleware' => 'role:superadmin', 'only' => ['index','create','destroy','edit','update','store']] );
-        
+        Route::get('frontpad/sync', 'Superadmin\GoodSizePriceController@sync', ['middleware' => 'role:superadmin']);
+        Route::resource('frontpad', 'Superadmin\GoodSizePriceController', ['middleware' => 'role:superadmin'] );
         Route::resource('recomend', 'Superadmin\RecomendController', ['middleware' => 'role:superadmin', 'only' => ['index','create','destroy','edit','update','store']] );
         
         Route::resource('subscriptions', 'Superadmin\SubscriptionController', ['middleware' => 'role:superadmin', 'only' => ['index','destroy']] );
@@ -30,8 +32,9 @@ Route::group(['prefix' => 'ip5woctv9f990lc'], function() {
         Route::resource('review', 'Superadmin\ReviewController', ['middleware' => 'role:superadmin', 'only' => ['index','create','destroy','edit','update','store']] );
         
         Route::resource('bonuslog', 'Superadmin\BonusLogController', ['middleware' => 'role:superadmin', 'only' => ['index','create','destroy','edit','update','store']] );
-        Route::resource('user', 'Superadmin\UserController', ['middleware' => 'role:superadmin', 'only' => ['index','create','destroy','edit','update','store']] );
-        
+        Route::get('clients', 'Superadmin\UserController@get_clients', ['middleware' => 'role:superadmin', 'only' => ['index','create','destroy','edit','update','store']] )->name('get_clients');
+        Route::resource('operators', 'Superadmin\OperatorController', ['middleware' => 'role:superadmin', 'only' => ['index','create','destroy','edit','update','store']] );
+
         Route::resource('action', 'Superadmin\ActionController', ['middleware' => 'role:superadmin', 'only' => ['index','create','destroy','edit','update','store','show']] );
         
         Route::resource('action-pickup', 'Superadmin\ActionPickupController', ['middleware' => 'role:superadmin', 'only' => ['index','create','destroy','edit','update','store','show']] );
@@ -86,6 +89,7 @@ Route::group(['prefix' => 'account'], function() {
         Route::get('/created-pizza', 'View\AccountController@createdPizza')->name('createdPizza');
         Route::post('/update/password', 'View\AccountController@update_password');
         Route::get('/order-history', 'View\AccountController@orderHistory')->name('orderHistory');
+        Route::get('/bonus-history', 'View\AccountController@bonusHistory')->name('bonusHistory');
         Route::get('show-order/{id}', 'View\AccountController@showOrder')->name('showOrder');
 
     });
@@ -114,12 +118,14 @@ Route::get('approved', 'View\CartController@approvedOrder');
 
 /* api route */
 Route::get('api/portion', 'View\ApiController@getPortionSizePrice');
+Route::get('api/check-client', 'View\ApiController@checkClient')->name('checkClient');
 Route::get('api/portion-reprice', 'View\ApiController@goodReprice');
 Route::get('api/constructor/{id}', 'View\ApiController@getConstractData');
 Route::get('api/custom-good-save', 'View\ApiController@customGoodSave');
 Route::delete('api/custom-good-remove', 'View\ApiController@customGoodRemove');
 Route::post('api/mail-send', 'View\ApiController@sendMail');
 Route::post('api/vacancies', 'View\ApiController@vacanciesSend')->name('vacanciesSend');
+Route::get('api/apply_bonus', 'View\ApiController@applyBonus')->name('applyBonus');
 /* api route */
 
 //Route::get('abc', function (){

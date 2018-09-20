@@ -20,6 +20,10 @@ class OrderController extends Controller
         if ($request->has('order_id')){
             $orders->where('order_id', 'like', '%' . $request->get('order_id') . '%');
         }
+        if ($request->has('frontpad_order_number')){
+            $orders->where('frontpad_order_number', '=', $request->get('frontpad_order_number'));
+        }
+
         $orders = $orders->orderby('id','desc')->paginate('15');
 
         return view(User::UserRoleName(Auth::user()->id).'.orders.index', compact('orders') );

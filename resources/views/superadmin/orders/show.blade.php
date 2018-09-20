@@ -25,6 +25,18 @@
     </form>
 </li>
 @endsection
+@section('search-fp_order_number')
+    <li class="nav-item">
+        <form class="form-inline my-2 my-lg-0 mr-lg-2" action="{{ route('selling.index') }}" method="get">
+            <div class="input-group">
+                <input type="text" class="form-control" name="frontpad_order_number" value="{{ request('frontpad_order_number') }}" placeholder="Номер заказа FrontPad">
+                <span class="input-group-btn">
+                  <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </form>
+    </li>
+@endsection
 
 @section('content')
 
@@ -39,23 +51,29 @@
         <div class="card">
             <div class="card-header">
                 <div class="row">
-                    <div style="color: #000000;" class="col-10"><i class="fa fa-cart-arrow-down"></i> Все товары</div>
+                    <div style="color: #000000;" class="col-10"><i class="fa fa-cart-arrow-down"></i> Заказ</div>
                 </div>
             </div>
             <div>
                 <table class="table table-hover">
                     <thead>
                     <tr>
-                        <td><strong>id</strong></td><td><strong>Номер заказа</strong></td><td><strong>Сумма</strong></td><td><strong>Дата заказа</strong></td><td><strong>Доставка</strong></td>
+                        <td><strong>id</strong></td>
+                        <td><strong>№ заказа</strong></td>
+                        <td><strong>№ заказа<br>FrontPad</strong></td>
+                        <td><strong>Сумма</strong></td>
+                        <td><strong>Дата заказа</strong></td>
+                        <td><strong>Доставка</strong></td>
                     </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>{{ $order->id }}</td>
                             <td>{{ $order->order_id }}</td>
+                            <td>{{ $order->frontpad_order_number }}</td>
                             <td>{{ $order->order_sum }} ТГ</td>
                             <td>{{ \Carbon\Carbon::parse($order->created_at)->format('d.m.Y H:i') }}</td>
-                            <td>{{ $order->delivery_type_id == true ? 'Самовывоз' : 'Доставка' }}</td>
+                            <td>{{ $order->delivery_type_id == 1 ? 'Самовывоз' : 'Доставка' }}</td>
                         </tr>
                     </tbody>
                 </table>
@@ -148,7 +166,7 @@
                 <div class="card">
                     <div class="card-header">
                         <div class="row">
-                            <div style="color: #000000;" class="col-10"><i class="fa fa-cart-arrow-down"></i> Контакты</div>
+                            <div style="color: #000000;" class="col-10"><i class="fa fa-cart-arrow-down"></i> Адрес доставки</div>
                         </div>
                     </div>
                     <div>

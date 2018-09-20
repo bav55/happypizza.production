@@ -11,7 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 
 use App\Models\Setting;
 use App\Models\Order;
-
+use App\Models\Role;
 
 class UserController extends Controller
 {
@@ -81,5 +81,4 @@ class UserController extends Controller
     public function create(){
         return view(User::UserRoleName(Auth::user()->id).'.reviews.create');
     }
-
 }

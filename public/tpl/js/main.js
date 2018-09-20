@@ -9,7 +9,7 @@ var hostname = window.location.hostname;
 var link = protocol+'//'+hostname;
 
 $(document).ready(function () {
-    $('.masked-phone').mask('+7(999)999-99-99');
+    $('.masked-phone').mask('+7(999)9999999');
 	if (localStorage.getItem('ScrollTop')){
 		window.scrollTo(0,localStorage.getItem('ScrollTop'));
 	} else {

@@ -4,7 +4,7 @@
     <li class="nav-item">
         <form class="form-inline my-2 my-lg-0 mr-lg-2" action="{{ route('selling.index') }}" method="get">
             <div class="input-group">
-                <input type="text" class="form-control" name="id" value="{{ request('id') }}" placeholder="Поиск по id">
+                <input type="text" class="form-control" name="id" value="{{ request('id') }}" placeholder="id заказа (сайт)">
                 <span class="input-group-btn">
                   <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
                 </span>
@@ -17,7 +17,7 @@
     <li class="nav-item">
         <form class="form-inline my-2 my-lg-0 mr-lg-2" action="{{ route('selling.index') }}" method="get">
             <div class="input-group">
-                <input type="text" class="form-control" name="order_id" value="{{ request('order_id') }}" placeholder="Поиск по номеру">
+                <input type="text" class="form-control" name="order_id" value="{{ request('order_id') }}" placeholder="Номер заказа (сайт)">
                 <span class="input-group-btn">
                   <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
                 </span>
@@ -25,7 +25,18 @@
         </form>
     </li>
 @endsection
-
+@section('search-fp_order_number')
+    <li class="nav-item">
+        <form class="form-inline my-2 my-lg-0 mr-lg-2" action="{{ route('selling.index') }}" method="get">
+            <div class="input-group">
+                <input type="text" class="form-control" name="frontpad_order_number" value="{{ request('frontpad_order_number') }}" placeholder="Номер заказа FrontPad">
+                <span class="input-group-btn">
+                  <button class="btn btn-primary" type="submit"><i class="fa fa-search"></i></button>
+                </span>
+            </div>
+        </form>
+    </li>
+@endsection
 @section('content')
 
 <ol class="breadcrumb">
@@ -45,12 +56,13 @@
                 <table class="table table-hover">
                     <thead>
                     <tr>
-                        <td><strong>id</strong></td>
-                        <td><strong>Номер заказа</strong></td>
+                        <td><strong>id заказа<br>Сайт</strong></td>
+                        <td><strong>№ заказа<br>Сайт</strong></td>
+                        <td><strong>№ заказа<br>FrontPad</strong></td>
                         <td><strong>Сумма</strong></td>
                         <td><strong>Статус</strong></td>
-                        <td><strong>Дата заказа</strong></td>
-                        <td><strong>Доставка</strong></td>
+                        <td><strong>Дата<br>заказа</strong></td>
+                        <td><strong>Способ<br>доставки</strong></td>
                         <td></td>
                     </tr>
                     </thead>
@@ -59,10 +71,11 @@
                         <tr>
                             <td>{{ $order->id }}</td>
                             <td>{{ $order->order_id }}</td>
+                            <td>{{ $order->frontpad_order_number }}</td>
                             <td>{{ $order->order_sum }} ТГ</td>
                             <td>{{ $order->is_new != true ? 'Просмотрен' : 'Новый'  }}</td>
                             <td>{{ \Carbon\Carbon::parse($order->created_at)->format('d.m.Y H:i') }}</td>
-                            <td>{{ $order->delivery_type_id == true ? 'Самовывоз' : 'Доставка' }}</td>
+                            <td>{{ $order->delivery_type_id == 1 ? 'Самовывоз' : 'Доставка' }}</td>
                             <td><a href="{{ route('selling.show',$order->id) }}" type="button" class="btn btn-primary btn-sm">Подробнее</a></td>
                         </tr>
                     @endforeach

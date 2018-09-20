@@ -9,7 +9,7 @@ class Setting extends Model
     public $timestamps = false;
 
     protected $fillable = [
-        'slider','seo','phone','social','delivery_info','work','email','bonus_percent'
+        'slider','seo','phone','social','delivery_info','work','email','bonus_percent','referal_order_percent','referer_bonus_sum'
     ];
 
 }

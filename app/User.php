@@ -17,7 +17,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'name', 'email', 'password','referer_id','phone'
     ];
 
     public function getUserBonus(){
@@ -64,6 +64,7 @@ class User extends Authenticatable
         // начиная с версии 5.1 метода array_fetch не существует
         //return in_array($check, array_fetch($this->roles->toArray(), 'name'));
     }
+
     /**
      * Получение идентификатора роли
      *
@@ -96,7 +97,8 @@ class User extends Authenticatable
     }
     
      public function phone()
-  {
-    return $this->hasOne('App\Phone');
-  }
+     {
+         return $this->hasOne('App\Phone');
+    }
+
 }

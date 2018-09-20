@@ -70,7 +70,7 @@
                         Клиенты
                     </div>
                 </div>
-                <a href="{{ route('user.index') }}" class="card-footer text-white clearfix small z-1">
+                <a href="{{ route('home') }}" class="card-footer text-white clearfix small z-1">
                     <span class="float-left">Смотреть</span>
                     <span class="float-right">
                   <i class="fa fa-angle-right"></i>

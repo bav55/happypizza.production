@@ -16,6 +16,7 @@
         <div class="card-body">
             <form class="form-horizontal" method="POST" action="{{ route('register') }}">
                 {{ csrf_field() }}
+                <input type="hidden" name="referer_id" value="{{app('request')->input('u')}}"/>
                 <div class="form-group">
                     <div class="form-row">
                         <div class="col-md-6">
@@ -84,7 +85,7 @@
 <script src="{{ asset('tpl/js/maskedinput.js') }}"></script>
 <script>
     $(document).ready(function () {
-        $('.masked-phone').mask('+7(999)999-99-99');
+        $('.masked-phone').mask('+7(999)9999999');
     });
 </script>
 </body>

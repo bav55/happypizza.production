@@ -16,6 +16,36 @@
                     </div>
                 </div>
                 <div class="row"><div class="col-xs-12">&nbsp;</div></div>
+                @if(Auth::user()->hasRole('operator'))
+                    <div class="panel panel-danger">
+                        <div class="panel-heading">
+                            <h3 class="panel-title">Информация для <b>оператора</b></h3>
+                        </div>
+                        <div class="panel-body">
+                            <div class="form-row align-items-center">
+                                <div class="form-group col-md-4">
+                                    <label for="operator-select">Выберите оператора для заказа</label>
+                                    <select class="form-control" id="operator-select" name="operator_id">
+                                        @foreach($operators as $operator)
+                                            <option value="{{ $operator->id }}">{{ $operator->name }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                                <div class="form-group col-md-4">
+                                    <label for="client">Поиск клиента по номеру телефона</label>
+                                        <input class="form-control masked-phone" type="text" name="client" id="client_phone" placeholder="Введите номер телефона"/>
+                                        <small class="alert alert-success client-alert client-alert-success">Данные о клиенте заполнены</small>
+                                        <small class="alert alert-danger client-alert client-alert-notfound">Данные о клиенте не найдены!</small>
+                                </div>
+                                <div class="form-group col-md-4 client-search">
+                                    <label for="client-search"><br></label>
+                                    <input type="button" id="client-search" class="btn btn-danger" value="Найти" />
+                                    <input type="button" id="client-clear" class="btn btn-info" value="Очистить" />
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                @endif
                 <div class="row"><div class="col-xs-12">&nbsp;</div></div>
                 <div class="row"><div class="col-xs-12"><strong>Ваши контактные данные</strong></div></div>
                 <div class="row"><div class="col-xs-12">&nbsp;</div></div>
@@ -66,7 +96,8 @@
                         <p>Вы можете забрать ваш заказ по адресу г. Алматы, Жандосова 10, уг. Манаса.<br> Время работы: с 09:00 до 22:00</p>
                     </div>
 
-                    <div class="col-sm-4 delivery-courier">
+                    <div class="col-sm-7 delivery-courier">
+                        <div class="form-horizontal">
                         <!--<div class="form-group">
                             <div class="dropdown">
                                 <button class="form-control" id="dLabel" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -91,12 +122,43 @@
                                 </ul>
                             </div>
                         </div>--->
-                        <div class="form-group"><input type="text" id="street" name="delivery[Улица]" maxlength="40" class="form-control" placeholder="Улица *" value=""><small class="has-error-text">Поле обязательное</small></div>
-                        <div class="form-group"><input type="text" id="house" name="delivery[Дом]" maxlength="5" class="form-control" placeholder="Дом *" value=""><small class="has-error-text">Поле обязательное</small></div>
-                        <div class="form-group"><input type="text" id="apartment" name="delivery[Квартира]" maxlength="5" class="form-control" placeholder="Квартира" value=""></div>
-                        <div class="form-group"><input type="text" id="square" name="delivery[Подъезд]" maxlength="5" class="form-control" placeholder="Подъезд" value=""></div>
-                        <div class="form-group"><input type="text" id="floor" name="delivery[Этаж]" maxlength="5" class="form-control" placeholder="Этаж" value=""></div>
-                        <div class="form-group"><input type="text" id="code" name="delivery[Код домофона]" maxlength="5" class="form-control" placeholder="Код домофона" value=""></div>
+                            <div class="form-group">
+                                <label for="street" class="col-sm-2 control-label" style="text-align: left; font-weight: normal;">Улица</label>
+                                <div class="col-sm-6">
+                                    <input type="text" id="street" name="delivery[Улица]" maxlength="40" class="form-control" placeholder="Улица *" value=""><small class="has-error-text">Поле обязательное</small>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="house" class="col-sm-2 control-label" style="text-align: left; font-weight: normal;">Дом</label>
+                                <div class="col-sm-6">
+                                 <input type="text" id="house" name="delivery[Дом]" maxlength="5" class="form-control" placeholder="Дом *" value=""><small class="has-error-text">Поле обязательное</small>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="apartment" class="col-sm-2 control-label" style="text-align: left; font-weight: normal;">Квартира</label>
+                                <div class="col-sm-6">
+                                    <input type="text" id="apartment" name="delivery[Квартира]" maxlength="5" class="form-control" placeholder="Квартира" value="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="square" class="col-sm-2 control-label" style="text-align: left; font-weight: normal;">Подъезд</label>
+                                <div class="col-sm-6">
+                                    <input type="text" id="square" name="delivery[Подъезд]" maxlength="5" class="form-control" placeholder="Подъезд" value="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="floor" class="col-sm-2 control-label" style="text-align: left; font-weight: normal;">Этаж</label>
+                                <div class="col-sm-6">
+                                    <input type="text" id="floor" name="delivery[Этаж]" maxlength="5" class="form-control" placeholder="Этаж" value="">
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="code" class="col-sm-2 control-label" style="text-align: left; font-weight: normal;">Домофон</label>
+                                <div class="col-sm-6">
+                                    <input type="text" id="code" name="delivery[Код домофона]" maxlength="5" class="form-control" placeholder="Код домофона" value="">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="row"><div class="col-xs-12">&nbsp;</div></div>
@@ -105,8 +167,9 @@
                 <div class="row">
                     <div class="col-xs-12">
                         <div class="btn-group btn-group-happypizza" role="group" aria-label="...">
-                            <input type="button" data-type="1" class="pay_type_id btn btn-default btn-left btn-active" value="Наличными">
-                            <input type="button" data-type="2" class="pay_type_id btn btn-default btn-right" value="Банковской картой">
+                            <input type="button" data-type="1" class="pay_type_id btn btn-default btn-left btn-active" value="Наличными при получении">
+                            <input type="button" data-type="3" class="pay_type_id btn btn-default" value="Оплата картой при получении">
+                            <input type="button" data-type="2" class="pay_type_id btn btn-default btn-right" value="Оплата картой онлайн">
                         </div>
                     </div>
                 </div>
@@ -201,4 +264,69 @@
 @section('script')
     <script src="https://widget.cloudpayments.ru/bundles/cloudpayments"></script>
     <script src="{{ asset('/tpl/js/order.js') }}"></script>
+    @if(Auth::user()->hasRole('operator'))
+        <script>
+            $('#client-clear').on( "click", function() {
+                $('#account-name').val('');
+                $('#account-phone').val('');
+                $('#account-email').val('');
+                $('#street').val('');
+                $('#house').val('');
+                $('#apartment').val('');
+                $('#floor').val('');
+                $('#square').val('');
+            });
+
+            $('#client-search').on( "click", function() {
+                var phone_no = $('#client_phone').val();
+                if(typeof(phone_no) != "undefined" && phone_no !== null && phone_no != '') {
+                    $.ajax({
+                        type:'GET',
+                        url:'/api/check-client',
+                        async:   true,
+                        timeout:4000, // 2 sec for timeout :/
+                        dataType: "json",
+                        data:{
+                            'client-phone': phone_no,
+                        },
+                        beforeSend: function(jqXHR, settings){
+
+                        },
+                        success: function(data, textStatus, jqXHR){
+                            //console.log(data);
+                            if (data['result'] == 'success'){
+                                $('#account-name').val(data['name']);
+                                $('#account-phone').val(phone_no);
+                                $('#account-email').val(data['email']);
+                                $('#street').val(data['street']);
+                                $('#house').val(data['home']);
+                                $('#apartment').val(data['apart']);
+                                $('#floor').val(data['et']);
+                                $('#square').val(data['pod']);
+
+                                $('.client-alert-success').fadeIn();
+                                setTimeout(function(){
+                                    $('.client-alert-success').fadeOut();
+                                }, 3000);
+                            }
+                            else{
+                                $('.client-alert-notfound').fadeIn();
+                                $('#client-clear').click(); //erase inputs if operator logged in
+                                setTimeout(function(){
+                                    $('.client-alert-notfound').fadeOut();
+                                }, 3000);
+                            }
+                        },
+                        error: function(jqXHR, textStatus, errorThrown){
+                            //alert('Error durng ajax call:\n'+errorThrown);
+                        },
+                    });
+                }
+                else{alert('Необходимо указать номер телефона!');}
+            });
+            $( document ).ready(function($) {
+                $('#client-clear').click(); //erase inputs if operator logged in
+            });
+        </script>
+    @endif
 @endsection

@@ -31,6 +31,7 @@
                 </div>
                 <form action="" autocomplete="off">
                 <div class="modal-body">
+                    <input type="hidden" name="referer_id" value="{{app('request')->input('u')}}"/>
                     <div class="form-group"><input type="text" name="name" class="form-control" placeholder="Ваше имя" required/><p class="help-block"></p></div>
                     <div class="form-group"><input type="text" name="phone" class="form-control masked-phone" placeholder="+7(___)___-__-__" required/><p class="help-block"></p></div>
                     <div class="form-group"><input type="email" name="email" class="form-control" placeholder="E-mail" required/><p class="help-block"></p></div>

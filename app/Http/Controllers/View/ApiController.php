@@ -4,15 +4,20 @@ namespace App\Http\Controllers\View;
 
 use App\Models\Good;
 use App\Models\Good_Size_Price;
+use App\Models\Order;
+use App\User;
+use App\Models\Setting;
+use App\Models\user_bonus;
+use App\Models\Bonus_Log;
 use App\Models\Ingredient;
 use App\Models\Portion;
 use App\Models\PromoCod;
-use App\Models\Setting;
 use App\Models\Vote;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
+
 
 class ApiController extends Controller
 {
@@ -275,10 +280,11 @@ class ApiController extends Controller
         $count = count($arr);
         $i = 1;
         foreach ($arr as $value) {
-            if(isset(Ingredient::all()->find($value['id'])->title)){
+            if(isset(Ingredient::all()->find($value['id'])->title) && $value['port'] > 0){
                 $str .= Ingredient::all()->find($value['id'])->title;
+                $str .= $count != $i ? ', ' : '';
             }
-            $str .= $count != $i ? ', ' : '';
+
             $i++;
         }
         return $str;
@@ -369,5 +375,108 @@ class ApiController extends Controller
         }
         return $str;
     }
-
+    public static function applyBonus(Request $request){
+        //get orders from today with Forntpad_order_id
+        $todayOrders = Order::where('created_at', '>=', date('Y-m-d').' 00:00:00')->whereNotNull('frontpad_order_id')->whereNull('operator_id')->get();
+        //dd($todayOrders);
+        foreach($todayOrders as $key => $order){
+            //проверить статус заказа во frontpad
+            $frontpad_apikey = Setting::all()->find(1)->frontpad_apikey;
+            $param = [
+                'secret' => $frontpad_apikey,
+                'order_id' => $order->frontpad_order_id,
+                ];
+            $data = '';
+            foreach ($param as $key => $value) {
+                $data .= "&".$key."=".$value;
+            }
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, "https://app.frontpad.ru/api/index.php?get_status");
+            curl_setopt($ch, CURLOPT_FAILONERROR, 1);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+            curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_HEADER, false);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+            $result = curl_exec($ch);
+            curl_close($ch);
+            $arr_result = json_decode($result, true);
+            //dd($arr_result);
+            if( ($arr_result['result'] == 'success') && ($arr_result['status'] == 'Выполнен') && !empty($order['user_id'])){
+                //если статус "выполнен" и автор заказа - зарегистрированный пользователь сайта.
+                $order_user = User::whereId($order['user_id'])->first();
+                if(!empty($order_user['referer_id'])){
+                    //Если у пользователя, который оформил заказ есть реферер,
+                    //проверить, начислялось ли вознаграждение рефереру за регистрацию этого пользователя, если нет - начислить
+                    $user_bonuses = Bonus_log::where('user_id', '=',$order_user['referer_id'])->where('referal_id','=',$order->user_id)->where('order_id','=',0)->first();
+                    if(!isset($user_bonuses)){
+                        //Добавим бонусы рефереру за регистрацию по его партнерской ссылке
+                        $referer_bonus_sum = Setting::all()->find(1)->referer_bonus_sum;
+                        $user_bonus = user_bonus::where('user_id',$order_user['referer_id'])->get()->first();
+                        $bonus_exist = isset($user_bonus->bonus)? (int)$user_bonus->bonus : 0;
+                        $new_sum_bonus = $bonus_exist + $referer_bonus_sum;
+                        user_bonus::updateOrCreate(['user_id' => $order_user['referer_id']],['bonus' => $new_sum_bonus]);
+                        //запишем информацию в журнал
+                        Bonus_Log::create([
+                            'order_id' => 0,
+                            'user_id' => $order_user['referer_id'],
+                            'referal_id' => $order['user_id'],
+                            'bonus' => $referer_bonus_sum,
+                            'notes' => 'Начисление бонусов за регистрацию по партнерской ссылке (пользователь: '.$order_user->name.')',//.' ('.$user->phone.')',
+                        ]);
+                    }
+                    //проверить, было ли уже начисление бонусов рефереру по этому заказу
+                    $referer_order_bonuses = Bonus_Log::whereOrder_id($order['id'])->whereUser_id($order_user['referer_id'])->whereReferal_id($order['user_id'])->first();
+                    if(!isset($referer_order_bonuses)){
+                        //начислить бонусы рефереру за заказ реферала
+                        $referal_order_percent = Setting::all()->find(1)->referal_order_percent;
+                        $referer_bonus = user_bonus::whereUser_id($order_user['referer_id'])->first()->bonus;
+                        $referer_adding_bonus = (int)$order['order_sum']/100 * (int)$referal_order_percent;
+                        user_bonus::updateOrCreate(['user_id' => $order_user['referer_id']],['bonus' => (int)$referer_bonus + (int)$referer_adding_bonus]);
+                        //и записать в лог
+                        $user = User::whereId(Auth::user()->id)->first();
+                        $username = Auth::user()->name;
+                        $order->getBonusLog()->create([
+                            'order_id' => $order->id,
+                            'user_id' => $order_user['referer_id'],
+                            'referal_id' => $order['user_id'],
+                            'bonus' => (int)$referer_adding_bonus,
+                            'notes' => 'Начисление бонусов за заказ '.$order->order_id.' вашего реферала '.$username,
+                        ]);
+                    }
+                }
+            }
+        }
+        return('Бонусные баллы по партнерской программе обновлены.');
+    }
+    public function checkClient(Request $request){ //check client from Frontpad and site clients
+        $phone = $request->get('client-phone');
+        $frontpad_apikey = Setting::all()->find(1)->frontpad_apikey;
+        $param = [
+            'secret' => $frontpad_apikey,
+            'client_phone' => urlencode($phone),
+        ];
+        $data = '';
+        foreach ($param as $key => $value) {
+            $data .= "&".$key."=".$value;
+        }
+        //dd($data);
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, "https://app.frontpad.ru/api/index.php?get_client");
+        curl_setopt($ch, CURLOPT_FAILONERROR, 1);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER,1);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, false);
+        curl_setopt($ch, CURLOPT_TIMEOUT, 30);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+        $result = curl_exec($ch);
+        curl_close($ch);
+        $arr_result = json_decode($result, true);
+        //dd($arr_result);
+        return $result;
+    }
 }

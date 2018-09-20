@@ -12,7 +12,7 @@ else { $bonus = 0;}
             <li><a href="{{ route('createdPizza') }}">Созданные пиццы</a></li>
             @if ($bonus && $bonus != 0)
                 <li><a href="{{ route('account') }}">Мои данные</a></li>
-                <li style="border-bottom: none"><a href="#" onclick="return false;">Бонусов: <b>{{ $bonus }}</b>ТГ</a></li>
+                <li style="border-bottom: none"><a href="{{ route('bonusHistory') }}">Бонусов: <b>{{ $bonus }}</b>ТГ ...</a></li>
             @else
                 <li style="border-bottom: none"><a href="{{ route('account') }}">Мои данные</a></li>
             @endif

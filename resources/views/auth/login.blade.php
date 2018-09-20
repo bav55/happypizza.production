@@ -54,7 +54,7 @@
 <script src="{{ asset('tpl/js/maskedinput.js') }}"></script>
 <script>
     $(document).ready(function () {
-        $('.masked-phone').mask('+7(999)999-99-99');
+        $('.masked-phone').mask('+7(999)9999999');
     });
 </script>
 </body>

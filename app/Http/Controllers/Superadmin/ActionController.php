@@ -61,7 +61,7 @@ class ActionController extends Controller
         } elseif ($data['present'] != null) {
             $data['total'] = json_encode($data['present']);
         }
-        if ($data['action']){
+        if (isset($data['action'])){
             $data['action'] = json_encode($data['action']);
         }
 

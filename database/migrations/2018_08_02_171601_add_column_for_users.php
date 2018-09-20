@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddColumnSetting2 extends Migration
+class AddColumnInActions extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,8 @@ class AddColumnSetting2 extends Migration
      */
     public function up()
     {
-        Schema::table('settings', function ($table) {
-            $table->integer('bonus_percent')->default('0');
-            $table->string('frontpad_apikey')->default('');
+        Schema::table('users', function ($table) {
+            $table->integer('referer_id')->nullable();
         });
     }
 

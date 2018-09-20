@@ -34,7 +34,8 @@ var register_id = '#registration-modal';
 function validate_registrate() {
     var errors = false;
     $(register_id + ' input').each(function () {
-        if ($(this).val() == ''){
+        //console.log($(this));
+        if ($(this).val() == '' && $(this).attr('name') != 'referer_id'){
             register_error($(this).attr('name'), 'поле обязательное для заполнения');
             errors = true;
         }
@@ -116,3 +117,18 @@ function register_error(name, html_val){
     input_name.next('p').css('display','block').html(html_val);
 }
 /* вывод ошибки валидации */
+
+function getUrlVars() {
+    var vars = {};
+    var parts = window.location.href.replace(/[?&]+([^=&]+)=([^&]*)/gi, function(m,key,value) {
+        vars[key] = value;
+    });
+    return vars;
+}
+
+$(function(){
+    var u = getUrlVars()["u"];
+    if(typeof(u) != "undefined" && u !== null) {
+        $('#registration-modal').modal('show')
+    }
+});

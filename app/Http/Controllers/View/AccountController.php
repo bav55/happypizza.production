@@ -4,6 +4,7 @@ namespace App\Http\Controllers\View;
 
 use App\Models\Good;
 use App\Models\Order;
+use App\Models\Bonus_Log;
 use App\User;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -56,7 +57,17 @@ class AccountController extends Controller
             [
                // 'orders' => Order::where('user_id', Auth::user()->id)->where('is_paid','1')->orderBy('id','desc')->paginate(10)
                'orders' => Order::where('phone', Auth::user()->phone)->where('is_paid','1')->orderBy('id','desc')->paginate(10)
-//                'orders' => Order::where('user_id', Auth::user()->id)->paginate(2)
+               // 'orders' => Order::where('phone', Auth::user()->phone)->where('is_paid','1')->orderBy('id','desc')->skip(0)->take(5)
+            ]
+        );
+    }
+    public function bonusHistory(Request $request){
+        if (isset($request->page) && $request->page == 1){
+            return Redirect::route('bonusHistory');
+        }
+        return view('view.account.bonus-history',
+            [
+                'bonus_log' => Bonus_Log::where('user_id', Auth::user()->id)->orderBy('created_at','desc')->paginate(10)
             ]
         );
     }

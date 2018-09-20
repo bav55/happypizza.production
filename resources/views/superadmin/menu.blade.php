@@ -22,6 +22,7 @@
         <li><a href="{{ route('action.index') }}">Акции</a></li>
         <li><a href="{{ route('action-pickup.index') }}">Дополнительные акции </a></li>
         <li><a href="{{ route('recomend.index') }}">Рекомендуемые</a></li>
+        <li><a href="{{ route('frontpad.index') }}">Связь с FrontPad</a></li>
     </ul>
 </li>
 <li class="nav-item dropdown" data-toggle="tooltip" data-placement="right">
@@ -61,8 +62,13 @@
     </a>
 </li>
 <li class="nav-item" data-toggle="tooltip" data-placement="right">
-    <a class="nav-link" href="{{ route('home') }}">
-        <i class="fa fa-fw fa-users"></i><span class="nav-link-text"> Пользователи</span>
+    <a class="nav-link" href="{{ route('get_clients') }}">
+        <i class="fa fa-fw fa-users"></i><span class="nav-link-text"> Клиенты</span>
+    </a>
+</li>
+<li class="nav-item" data-toggle="tooltip" data-placement="right">
+    <a class="nav-link" href="{{ route('operators.index') }}">
+        <i class="fa fa-fw fa-users"></i><span class="nav-link-text"> Операторы</span>
     </a>
 </li>
 <li class="nav-item" data-toggle="tooltip" data-placement="right">

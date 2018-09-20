@@ -106,18 +106,40 @@
             </div>
         </div>
         <hr>
-        <div class="col-md-12">
+        <div class="col-md-12 email">
             <div class="row">
-                <div class="form-group col-md-6">
-                    <label>E-mail</label>
-                    <input type="text" class="form-control" value="{{ $setting->email }}" name="email" placeholder="E-mail">
+                <div class="form-group col-md-12">
+                    <input type="text" class="form-control" value="E-mail" disabled>
                 </div>
-                <div class="form-group col-md-6">
-                    <label>Бонус при заказе в %</label>
-                    <input type="number" class="form-control" value="{{ $setting->bonus_percent }}" name="bonus_percent" placeholder="Бонус">
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <input type="text" class="form-control" value="{{ $setting->email }}" name="email" placeholder="E-mail">
                 </div>
             </div>
         </div>
+        <div class="col-md-12 refsys">
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <input type="text" class="form-control" value="Реферальная система" disabled>
+                </div>
+            </div>
+            <div class="row">
+                <div class="form-group col-md-12">
+                    <label>Бонус при заказе в %</label>
+                    <input type="number" class="form-control" value="{{ $setting->bonus_percent }}" name="bonus_percent" placeholder="Бонус">
+                </div>
+                <div class="form-group col-md-12">
+                    <label>Бонус рефереру при регистрации по партнерской ссылке (тг)</label>
+                    <input type="number" class="form-control" value="{{ $setting->referer_bonus_sum }}" name="referer_bonus_sum" placeholder="Бонус">
+                </div>
+                <div class="form-group col-md-12">
+                    <label>Бонус рефереру при заказе реферала в %</label>
+                    <input type="number" class="form-control" value="{{ $setting->referal_order_percent }}" name="referal_order_percent" placeholder="Бонус">
+                </div>
+            </div>
+        </div>
+
         <hr>
         <div class="col-md-12 phone-lists">
             <div class="row">

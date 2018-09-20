@@ -36,6 +36,7 @@
         <ul class="navbar-nav ml-auto">
             @yield('search')
             @yield('search-two')
+            @yield('search-fp_order_number')
             <li class="nav-item">
                 <a href="{{ route('index') }}" class="nav-link" target="_blank"><i class="fa fa-fw fa-globe"></i>На сайт</a>
             </li>

@@ -10,7 +10,7 @@ class Order extends Model
     protected $table = 'orders';
 
     protected $fillable = [
-        'user_id','name','phone','email','delivery_type_id','delivery_zone_id','delivery_address','pay_type_id','extra','is_paid','good_list','present_list','bonus_sum','apply_bonus_sum','order_id','transaction_id','order_sum','is_new'
+        'user_id','name','phone','email','delivery_type_id','delivery_zone_id','delivery_address','pay_type_id','extra','is_paid','good_list','present_list','bonus_sum','apply_bonus_sum','order_id','transaction_id','order_sum','is_new','frontpad_order_id','frontpad_order_number','operator_id'
     ];
 
     

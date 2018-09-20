@@ -14,7 +14,7 @@
         {{ csrf_field() }}
         <div class="box box-warning">
             <div class="box-header with-border row">
-                <div class="col-md-9"><h3 class="box-title">Редактирорвание {{ $action->title }}</h3></div>
+                <div class="col-md-9"><h4 class="box-title">Редактирование акции: "<strong>{{ $action->title }}</strong>"</h4></div>
                 <div class="col-md-3">
                     <a href="{{ route('action.index') }}" type="button" class="btn btn-primary pull-left">Назад</a>
                     <button type="submit" class="btn btn-primary pull-right">Сохранить</button>
@@ -35,6 +35,20 @@
                     <div class="form-group">
                         <label>url - продукта</label>
                         <input type="text" name="url_product" class="form-control" value="{{ $action->url_product }}">
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Артикул из FrontPad</label>
+                                <input type="number" name="frontpad_article" class="form-control" value="{{ $action->frontpad_article }}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Стоимость из FrontPad</label>
+                                <input type="number" name="frontpad_price" class="form-control" value="{{ $action->frontpad_price }}">
+                            </div>
+                        </div>
                     </div>
                     <div class="form-group">
                         <label>Анонс</label>
