@@ -16,7 +16,7 @@
                     </div>
                 </div>
                 <div class="row"><div class="col-xs-12">&nbsp;</div></div>
-                @if(Auth::user()->hasRole('operator'))
+                @if( (Auth::check()) && (Auth::user()->hasRole('operator')))
                     <div class="panel panel-danger">
                         <div class="panel-heading">
                             <h3 class="panel-title">Информация для <b>оператора</b></h3>
