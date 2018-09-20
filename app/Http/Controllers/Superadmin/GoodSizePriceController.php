@@ -28,46 +28,47 @@ class GoodSizePriceController extends Controller
 
     public function index(Request $request){
 
-        $gsp = Good_Size_Price::select('*');
-
-        $gsp = $gsp->paginate('15');
+        $gsp = Good_Size_Price::join('goods',function ($join) {
+            $join->on('goods.id', '=', 'good__size__prices.good_id')
+                ->where('goods.category_id', '>', 0);
+        } )->orderBy('goods.category_id','asc')->select('good__size__prices.*')->with('good')->paginate('15');
         return view(User::UserRoleName(Auth::user()->id).'.gsp.index', compact('gsp') );
     }
 
     public function create(){
-  /*
-        return view(User::UserRoleName(Auth::user()->id).'.goods.create',
-            [
-                'categories' => Category::all(),
-                'ingredients' => Ingredient::all(),
-                'portions' => Portion::all(),
-                'preferences' => Preference::all(),
-                'medias' => Mediafile::all()
-            ]
-        );
-  */
+        /*
+              return view(User::UserRoleName(Auth::user()->id).'.goods.create',
+                  [
+                      'categories' => Category::all(),
+                      'ingredients' => Ingredient::all(),
+                      'portions' => Portion::all(),
+                      'preferences' => Preference::all(),
+                      'medias' => Mediafile::all()
+                  ]
+              );
+        */
     }
 
     public function store(Request $request){
-/*
-        $data = $request->except(['_token']);
+        /*
+                $data = $request->except(['_token']);
 
-        $data['is_popular'] == 'true' ? $data['is_popular'] = true : $data['is_popular'] = false;
-        $data['is_hit'] == 'true' ? $data['is_hit'] = true : $data['is_hit'] = false;
-        $data['is_new'] == 'true' ? $data['is_new'] = true : $data['is_new'] = false;
+                $data['is_popular'] == 'true' ? $data['is_popular'] = true : $data['is_popular'] = false;
+                $data['is_hit'] == 'true' ? $data['is_hit'] = true : $data['is_hit'] = false;
+                $data['is_new'] == 'true' ? $data['is_new'] = true : $data['is_new'] = false;
 
-        $good = Good::create($data);
+                $good = Good::create($data);
 
-        foreach ($data['size_price'] as $datum){
-            $size_perice = new Good_Size_Price;
-            $size_perice -> good_id = $good->id;
-            $size_perice -> portion_id = $datum['port_id'];
-            $size_perice -> portion_price = $datum['port_price'];
-            $size_perice -> save();
-        }
+                foreach ($data['size_price'] as $datum){
+                    $size_perice = new Good_Size_Price;
+                    $size_perice -> good_id = $good->id;
+                    $size_perice -> portion_id = $datum['port_id'];
+                    $size_perice -> portion_price = $datum['port_price'];
+                    $size_perice -> save();
+                }
 
-        return Redirect::route('goods.index')->with('success', 'Товар добавлен');
-*/
+                return Redirect::route('goods.index')->with('success', 'Товар добавлен');
+        */
     }
 
     public function update(Request $request,$id){
@@ -89,10 +90,10 @@ class GoodSizePriceController extends Controller
     }
 
     public function destroy($id){
-/*
-        Good::all()->find($id)->delete();
-        return Redirect::route('goods.index')->with('success', 'Товар удален');
-*/
+        /*
+                Good::all()->find($id)->delete();
+                return Redirect::route('goods.index')->with('success', 'Товар удален');
+        */
     }
     public function sync(){
         $gsp = Good_Size_Price::select('*');
@@ -116,7 +117,10 @@ class GoodSizePriceController extends Controller
         if($data['result'] == 'success'){
             $frontpad_products = [];
             //$gsp = Good_Size_Price::all();
-            $gsp = Good_Size_Price::join('goods', 'goods.id', '=', 'good__size__prices.good_id')->orderBy('goods.title','desc')->select('good__size__prices.*')->with('good')->get();
+            $gsp = Good_Size_Price::join('goods',function ($join) {
+                $join->on('goods.id', '=', 'good__size__prices.good_id')
+                    ->where('goods.category_id', '>', 0);
+            } )->orderBy('goods.title','desc')->select('good__size__prices.*')->with('good')->get();
             //dd($gsp);
             for($i = 0; $i < count($data['product_id']); $i++){
                 $frontpad_products[$data['product_id'][$i]] = ['product_id' => $data['product_id'][$i], 'name' => $data['name'][$i], 'price' => $data['price'][$i]];
@@ -125,6 +129,7 @@ class GoodSizePriceController extends Controller
             foreach($gsp as $key => $gsp_item){
                 $product_name = $gsp_item->getGoodName($gsp_item->good);
                 $portion_name = $gsp_item->getPortionName($gsp_item->portion);
+                $category_name = '';
                 if(isset($gsp_item->good->category)) $category_name = Category::getCategoryName($gsp_item->good->category);
                 //preg_match_all('/[а-яА-Я0-9]+/u', $product_name.' '.$portion_name, $site_str, PREG_SET_ORDER, 0);
                 $site_str = explode(' ', str_replace(['.',',','(',')'],'',mb_strtoupper($product_name.' '.$portion_name, 'UTF-8')));
@@ -135,7 +140,7 @@ class GoodSizePriceController extends Controller
                     if($key1 != false) $frontpad_str[$key1] = 'ТРАДИЦИОННОЕ';
                     $arr = array_intersect($site_str, $frontpad_str);
                     if((count($arr) == count($frontpad_str) && $frontpad_product['price'] > 0)
-                    || ($category_name != "Пицца" && $category_name != "На компанию" && $frontpad_product['price'] > 0 && count($arr) == count($frontpad_str) -1 and count($arr) > 1)
+                        || ($category_name != "Пицца" && $category_name != "На компанию" && $frontpad_product['price'] > 0 && count($arr) == count($frontpad_str) -1 and count($arr) > 1)
                     ){
                         $gsp_found = Good_Size_Price::find($gsp_item->id);
                         $gsp_found->frontpad_article = $frontpad_product['product_id'];
