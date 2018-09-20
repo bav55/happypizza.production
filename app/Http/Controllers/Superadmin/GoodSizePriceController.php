@@ -11,6 +11,7 @@ use App\Models\Good_Size_Price;
 use App\Models\Ingredient;
 use App\Models\Mediafile;
 use App\Models\Portion;
+use App\Models\Setting;
 use App\Models\Preference;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -95,7 +96,8 @@ class GoodSizePriceController extends Controller
     }
     public function sync(){
         $gsp = Good_Size_Price::select('*');
-        $params = ['secret' => 'ihYN4HbYFGnGkdhB4ezbhBG7KsTQr4ZDaGb4deKHN3d35nnYyNZEbsBNKfr49as9Gy4NBDhbrn4hEe52TQsY7SyF3Ny2QQ2i8QZze7ByhsFQzzBe9S37AiBkZZaBA2KyDyTGrf5BAzbZTE4TiSQH5dYR4YdnHQKa9tGnDBR32SNGhErti54b8NS2zZb7AN7z7ENz5riS82kfsDBDysEt6ies7hktYfSRNtbFKniGazQs3dThzkDrzHHtSY'];
+        $frontpad_apikey = Setting::all()->find(1)->frontpad_apikey;
+        $params = ['secret' => $frontpad_apikey];
         $frontpad_url = 'https://app.frontpad.ru/api/index.php?get_products';
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $frontpad_url);
@@ -126,7 +128,6 @@ class GoodSizePriceController extends Controller
                 if(isset($gsp_item->good->category)) $category_name = Category::getCategoryName($gsp_item->good->category);
                 //preg_match_all('/[а-яА-Я0-9]+/u', $product_name.' '.$portion_name, $site_str, PREG_SET_ORDER, 0);
                 $site_str = explode(' ', str_replace(['.',',','(',')'],'',mb_strtoupper($product_name.' '.$portion_name, 'UTF-8')));
-
                 foreach($frontpad_products as $article => $frontpad_product){
                     //preg_match_all('/[а-яА-Я0-9]+/u', $frontpad_product['name'], $frontpad_str, PREG_SET_ORDER, 0);
                     $frontpad_str = explode(' ', str_replace(['.',',','(',')'],'',mb_strtoupper($frontpad_product['name'],'UTF-8')));
