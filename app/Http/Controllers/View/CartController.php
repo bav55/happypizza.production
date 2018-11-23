@@ -351,7 +351,7 @@ class CartController extends Controller
             'messagedata' => $text
 
         );
-        $_SESSION['sms_message'][] = '<iframe style="display:none;" src="http://212.124.121.186:9501/api?action=sendmessage&username='.$sms_username.'&password='.$sms_password.'&recipient='.$sms_recipient.'&messagetype=SMS:TEXT&originator='.$sms_originator.'&messagedata='.$text.'"></iframe>';
+        $_SESSION['sms_message'][] = '<iframe style="display:none;" src="http://212.124.121.186:9507/api?action=sendmessage&username='.$sms_username.'&password='.$sms_password.'&recipient='.$sms_recipient.'&messagetype=SMS:TEXT&originator='.$sms_originator.'&messagedata='.$text.'"></iframe>';
         //echo '<iframe style="display:none;" src="http://212.124.121.186:9501/api?action=sendmessage&username='.$sms_username.'&password='.$sms_password.'&recipient='.$sms_recipient.'&messagetype=SMS:TEXT&originator='.$sms_originator.'&messagedata='.$text.'"></iframe>';
         //echo '<iframe style="display:none;" src="http://kazinfoteh.org:9501/api?action=sendmessage&username='.$sms_username.'&password='.$sms_password.'&recipient='.$sms_recipient.'&messagetype=SMS:TEXT&originator='.$sms_originator.'&messagedata='.$text.'"></iframe>';
         /* $ch = curl_init('http://kazinfoteh.org:9501/api');
