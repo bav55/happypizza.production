@@ -370,7 +370,7 @@ header {
       display: block; }
     .phones .phones-holder .main-phone {
       display: inline-block;
-      padding-right: 17px;
+      padding-right: 0px;
       position: relative; }
       .phones .phones-holder .main-phone a {
         color: #000; }
