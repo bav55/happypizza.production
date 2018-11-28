@@ -122,7 +122,7 @@ $(document).ready(function () {
                     
                     
                     console.log('sms');
-                    if(val.pay_type == 1){
+                    if((val.pay_type == 1) || (val.pay_type == 3)){
                         $checkoutSuccess.modal('show');
 						sendSMS(val.sms);
                     }else if (val.pay_type == 2) {
