@@ -262,7 +262,8 @@ class CartController extends Controller
             $sms_messagedata = 'Ваш+заказ+'.$order->order_id.'+оформлен+на+сайте+happypizza.kz.Зачислено'.$cach_back.'+баллов.+Всего+'.$order->bonus_sum.'+баллов.';
             self::SendSMS($data['phone'], $sms_messagedata);
         }
-        elseif (Auth::guest() && ($data['pay_type_id'] == 1 || $data['pay_type_id'] == 3)){
+        //elseif (Auth::guest() && ($data['pay_type_id'] == 1 || $data['pay_type_id'] == 3)){
+        elseif ($data['pay_type_id'] == 1 || $data['pay_type_id'] == 3){
             $sms_messagedata = 'Спасибо за заказ! Ваша заявка в обработке. Для подтверждения заказа с вами свяжется оператор.';
             self::SendSMS($data['phone'], $sms_messagedata);
         }
