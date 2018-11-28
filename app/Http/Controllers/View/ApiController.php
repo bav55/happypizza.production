@@ -436,8 +436,8 @@ class ApiController extends Controller
                         $referer_adding_bonus = (int)$order['order_sum']/100 * (int)$referal_order_percent;
                         user_bonus::updateOrCreate(['user_id' => $order_user['referer_id']],['bonus' => (int)$referer_bonus + (int)$referer_adding_bonus]);
                         //и записать в лог
-                        $user = User::whereId(Auth::user()->id)->first();
-                        $username = Auth::user()->name;
+                        $user = User::whereId($order['user_id'])->first();
+                        $username = $user->name;
                         $order->getBonusLog()->create([
                             'order_id' => $order->id,
                             'user_id' => $order_user['referer_id'],
