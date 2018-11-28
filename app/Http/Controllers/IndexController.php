@@ -27,7 +27,7 @@ class IndexController extends Controller
 {
     public function index(){
         $slider = json_decode(Setting::all()->find(1)->slider);
-        $goods = Good::where('category_id','1')->orderBy('position','ASC')->limit('6')->get();
+        $goods = Good::where('category_id','1')->where('activation',1)->orderBy('position','ASC')->limit('6')->get();
         $actions = Action::where('date_at','<',date('Y-m-d').'00:00:00')
                             ->where('date_to','>',date('Y-m-d').'23:59:59')
                             ->where('show_main','1')->orderBy('sort', 'DESC')->get();
